@@ -4,7 +4,7 @@ import SubNavbar from "@/components/Headers/SubNavbar";
 
 export default function Home() {
   return (
-    <main className="container mx-auto">
+    <main className="">
     <Navbar />
     <SubNavbar />
     <Hero />

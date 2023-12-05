@@ -11,7 +11,7 @@ function Navbar() {
   const [showNav, setShowNav] = useState(false);
   const [showSubNav, setShowSubNav] = useState(false);
   return (
-    <div className="navbar px-3 h-[50px] min-h-[50px] py-0 bg-base-100 border-b">
+    <div className="navbar px-3 container mx-auto h-[50px] min-h-[50px] py-0 bg-base-100 border-b">
       <div className="navbar-start ">
         <div className="flex items-center">
           <div className="lg:hidden">
@@ -186,7 +186,7 @@ function Navbar() {
         </div>
       </div>
       <div className="navbar-center">
-      <div className="brand-image h-  lg:hidden">
+      <div className="brand-image h-9  lg:hidden">
           <a href="#">
             <svg
               xmlns="http://www.w3.org/2000/svg"

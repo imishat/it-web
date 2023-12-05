@@ -2,7 +2,7 @@ import Link from "next/link";
 
 function SubNavbar() {
     return (
-        <div className="w-full hidden border-b lg:block">
+        <div className="w-full hidden container mx-auto border-b lg:block">
             <ul className="flex text-sm items-center justify-between">
                 <li className="w-full flex items-center border-r justify-center">
                     <Link className="w-auto flex justify-center py-2 border-b-2 border-transparent hover:border-blue-500" href={'#'}>Design</Link>
