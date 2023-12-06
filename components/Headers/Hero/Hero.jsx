@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { IoSearch } from "react-icons/io5";
+import Partners from "../Partners/Partners";
 import HeroSlider from "./HeroSlider";
 // Import Swiper React components
 
@@ -23,6 +24,8 @@ function Hero() {
           <source src="/videos/background.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        {/* video overlay */}
+        <span className="absolute left-0 top-0 h-full w-full backdrop-blur-lg"></span>
         <div className="w-full flex justify-between xl:justify-around z-10 container mx-auto">
           <div className="sm:h-56 w-[400px] xl:w-[500px] md:h-72 lg:h-96 xl:h-[480px] flex items-center">
             <div>
@@ -93,6 +96,7 @@ function Hero() {
         </div>
        
       </div>
+      <Partners />
     </div>
   );
 }
