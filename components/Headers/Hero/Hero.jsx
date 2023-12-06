@@ -25,7 +25,7 @@ function Hero() {
           Your browser does not support the video tag.
         </video>
         {/* video overlay */}
-        <span className="absolute left-0 top-0 h-full w-full backdrop-blur-lg"></span>
+        <span className="absolute left-0 top-0 h-full w-full backdrop-blur"></span>
         <div className="w-full flex justify-between xl:justify-around z-10 container mx-auto">
           <div className="sm:h-56 w-[400px] xl:w-[500px] md:h-72 lg:h-96 xl:h-[480px] flex items-center">
             <div>

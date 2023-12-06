@@ -13,8 +13,8 @@ export default function Home() {
     <SubNavbar />
     <Hero />
     <Categories/>
-    <Description />
     <Products />
+    <Description />
     <Footer />
     </main>
   )
