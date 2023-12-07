@@ -1,3 +1,7 @@
+
+'use client'
+import { useState } from "react";
+
 import Product from "./Product";
 
 function Products() {
@@ -180,6 +184,11 @@ function Products() {
             price:42,
         },
     ]
+
+    // page
+    const [page,setPage] = useState(0)
+    // count
+    const count = 6
     return (
         <div className="container mx-auto">
             
@@ -192,6 +201,16 @@ function Products() {
                         return <Product key={product?.id} product={product}/>
                     })
                 }
+            </div>
+            {/* Pagination */}
+            <div className="flex justify-center">
+            <div className="join">
+                { count ?
+                    [...Array(count).keys()]?.map((item,i)=>{
+                        return  <button onClick={()=>setPage(i)} key={i} className={`join-item btn ${page===i ? 'btn-active':''}`}>{i+1}</button>
+                    }):''
+                }
+                </div>
             </div>
         </div>
     );

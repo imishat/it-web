@@ -4,6 +4,7 @@ import { IoGrid, IoHome } from "react-icons/io5";
 import Link from "next/link";
 import { IoMdLogIn, IoMdMenu } from "react-icons/io";
 
+import Image from "next/image";
 import { useState } from "react";
 
 function Navbar() {
@@ -163,9 +164,9 @@ function Navbar() {
           ></button>
         </div>
         <div className="brand-image h-9 hidden lg:block">
-          <a href="#">
-           <img src="/images/logo.png" className="h-10" alt="" />
-          </a>
+          <Link href="/">
+           <Image width={150} height={100} src="/images/logo.png" className="h-10 w-full" alt="" />
+          </Link>
         </div>
       </div>
       <div className="navbar-center">
