@@ -9,3 +9,26 @@
 body {
   font-family: "Open Sans, Helvetica, sans-serif";
 }
+
+/* ========== swiper ===== */
+.swiper-button-prev:after {
+  font-size: 12px !important;
+}
+.swiper-button-next:after {
+  font-size: 12px !important;
+}
+.swiper-button-prev {
+  left: 0 !important;
+  background-color: white;
+  border-top-right-radius: 20px;
+  height: 32px !important;
+  border-bottom-right-radius: 20px;
+}
+.swiper-button-next {
+  right: 0 !important;
+  background-color: white;
+  height: 32px !important;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+/* ========== swiper ===== */
