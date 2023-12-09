@@ -1,9 +1,9 @@
-import Product from "@/components/Products/Product";
+import Blog from "@/components/Blogs/Blog";
 
 function page() {
     return (
         <div>
-            <Product />
+            <Blog />
         </div>
     );
 }

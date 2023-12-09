@@ -5,20 +5,37 @@ import Link from "next/link";
 import { IoMdLogIn, IoMdMenu } from "react-icons/io";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+
 function Navbar() {
+  // router
+  const router = usePathname()
+  console.log(router)
   // show hide side nav
   const [showNav, setShowNav] = useState(false);
   const [showSubNav, setShowSubNav] = useState(false);
+
+
   return (
     <div className="navbar px-3 container mx-auto h-[50px] min-h-[50px] py-0 bg-base-100 border-b">
       <div className="navbar-start ">
         <div className="flex items-center">
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center">
+            {
+             router==='/dashboard' ? <label
+             htmlFor="my-drawer-2"
+             className="drawer-button pt-1 lg:hidden"
+           >
+            <IoMdMenu size={32} />
+           </label>:
             <button onClick={() => setShowNav(!showNav)} className="pt-1">
               <IoMdMenu size={32} />
             </button>
+            }
+           
+            
           </div>
           <div
             className={`absolute flex flex-col transition-all z-30 px-6 h-screen bg-base-200 top-0 w-96 menu menu-sm rounded-none duration-200 lg:hidden ${
@@ -195,7 +212,7 @@ function Navbar() {
       </div>
       <div className="navbar-end">
 
-      <Link href={""} className="px-4 text-sm hidden lg:block py-2">
+      <Link href={"/blogs"} className="px-4 text-sm hidden lg:block py-2">
           Blogs
         </Link>
         <a className="btn btn-ghost !min-h-[40px] h-[40px] hover:bg-transparent hover:text-blue-600 text-xs px-6 rounded-none">
@@ -205,6 +222,7 @@ function Navbar() {
           Sign Up
         </a>
       </div>
+     
     </div>
   );
 }
