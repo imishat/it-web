@@ -24,8 +24,8 @@ function ProductSlider({ images,showNavigation }) {
       >
         {images?.map((image) => {
           return (
-            <SwiperSlide key={image?.id} className="!W-96 overflow-hidden !h-52">
-              <Image width={400} height={400} src={image?.image} className="!h-56 overflow-hidden w-full object-top object-cover" alt="" />
+            <SwiperSlide key={image?.id} className="!W-96 !overflow-hidden  !h-52">
+              <Image width={400} height={400} src={image?.image} className="!h-56   w-full object-top object-cover" alt="" />
             </SwiperSlide>
             
           );

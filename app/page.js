@@ -3,10 +3,11 @@ import SubNavbar from "@/components/Headers/SubNavbar";
 import Categories from "@/components/Home/Categories/Categories";
 import Description from "@/components/Home/Description/Description";
 import Products from "@/components/Home/Products/Products";
+import CartSidebar from "@/components/Modals/CartSidebar";
 
 export default function Home() {
   return (
-    <main>
+    <main className=" ">
     <SubNavbar />
     <Hero />
     <Categories/>
@@ -14,6 +15,7 @@ export default function Home() {
     <Description />
     
     {/* <LoginModal /> */}
+    <CartSidebar />
     </main>
   )
 }

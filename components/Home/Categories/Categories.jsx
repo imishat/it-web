@@ -49,8 +49,13 @@ function Categories() {
     // Swiper breakpoints
     const breakpoints = {
         // when window width is >= 320px
+        100: {
+            slidesPerView: 3,
+            spaceBetween: 2,
+          },
+        // when window width is >= 320px
         420: {
-          slidesPerView: 1,
+          slidesPerView: 3,
           spaceBetween: 2,
         },
         // when window width is >= 480px
@@ -90,9 +95,9 @@ function Categories() {
           className="mySwiper !gap-2 !flex">
                     {
                         categories?.map((category,i)=>{
-                            return <SwiperSlide key={i} className="border !h-32">
+                            return <SwiperSlide key={i} className="border !h-auto sm:!h-32">
                                 <div className="flex h-full justify-center items-center">
-                                <img src={category?.image} alt="" />
+                                <img className="w-full object-cover h-full" src={category?.image} alt="" />
                                 </div>
                             </SwiperSlide>
                         })

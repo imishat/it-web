@@ -32,3 +32,22 @@ body {
   border-bottom-left-radius: 20px;
 }
 /* ========== swiper ===== */
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: rgb(226, 225, 225);
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(172, 172, 172);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(126, 125, 125);
+  border-radius: 10px;
+}

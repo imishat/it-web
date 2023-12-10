@@ -1,4 +1,5 @@
 'use client'
+import Link from "next/link";
 import { CiCircleList, CiGrid41, CiHeart, CiSettings, CiShop, CiShoppingCart } from "react-icons/ci";
 import { LiaDoorOpenSolid } from "react-icons/lia";
 
@@ -23,14 +24,13 @@ function Layout({children}) {
             <div className="divide-y divide-base-200">
               <ul className="pt-2 pb-4 space-y-1 text-sm">
                 <li className="bg-base-300">
-                  <a
-                    rel="noopener noreferrer"
-                    href="#"
+                  <Link rel="noopener noreferrer"
+                    href="/dashboard"
                     className="flex items-center p-2 space-x-3 rounded-md"
                   >
                     <CiGrid41 size={22} />
                     <span>Dashboard</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a

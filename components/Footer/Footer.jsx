@@ -3,11 +3,12 @@ import Link from "next/link";
 function Footer() {
   return (
     <div className="container mx-auto">
-      <div className="flex justify-between border-b py-6">
+      <div className="grid px-4 grid-cols-1 sm:grid-cols-2 gap-4 md:flex justify-between border-b py-6">
         <div className="w-full">
           <img className="h-12" src="/images/logo.png" alt="" />
         </div>
-        <div className="w-full">
+       <div className="grid grid-cols-2 gap-5 md:flex justify-between">
+       <div className="w-full">
           <h3 className="text-xl font-bold">About</h3>
           <Link href={`#`} className="inline-block w-full py-1.5">
             About Work
@@ -58,8 +59,9 @@ function Footer() {
             Contact Support
           </Link>
         </div>
+       </div>
       </div>
-      <div className="flex items-center justify-between my-6">
+      <div className="flex items-center justify-between my-6 px-4 text-xs sm:text-base">
         <div className="text-gray-400">
           <p> 2015 - 2023 Kwork ©</p>
           <p></p>
@@ -69,7 +71,7 @@ function Footer() {
           <p></p>
           <p>Narva mnt 7,634, Estonia</p>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="md:flex items-center gap-1">
         <img className="w-44 h-auto" src="https://cdn.kwork.com/images/footer/app-appstore-en.png" alt="" />
         <img className="w-44 h-auto" src="https://cdn.kwork.com/images/footer/app-gplay-en.png" alt="" />
 
