@@ -1,9 +1,7 @@
-import Product from "@/components/Products/Product";
-
 function page() {
     return (
         <div>
-            <Product />
+            Enter
         </div>
     );
 }

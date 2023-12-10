@@ -24,9 +24,7 @@ function LoginModal({}) {
                </div>
                {/* Or Social login */}
                <div className="w-full relative">
-                <p className="border-b w-full absolute border-gray-300 h-1">
-                    <span className="flex justify-center relative items-center -top-2 bg-base-100 w-12 mx-auto">Or</span>
-                </p>
+               <div className="divider">OR</div>
                </div>
             </div>
         </div>

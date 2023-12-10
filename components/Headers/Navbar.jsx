@@ -5,20 +5,40 @@ import Link from "next/link";
 import { IoMdLogIn, IoMdMenu } from "react-icons/io";
 
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { BsCart2 } from "react-icons/bs";
+
 
 function Navbar() {
+  // router
+  const router = usePathname()
+  console.log(router)
   // show hide side nav
   const [showNav, setShowNav] = useState(false);
   const [showSubNav, setShowSubNav] = useState(false);
+
+// show hide cart
+const [showSidebar,setShowSidebar] = useState(false)
   return (
-    <div className="navbar px-3 container mx-auto h-[50px] min-h-[50px] py-0 bg-base-100 border-b">
+  <div className=" ">
+    <div className="navbar px-3   container mx-auto h-[50px] min-h-[50px] py-0 bg-base-100 border-b">
       <div className="navbar-start ">
         <div className="flex items-center">
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center">
+            {
+             router==='/dashboard' ? <label
+             htmlFor="my-drawer-2"
+             className="drawer-button pt-1 lg:hidden"
+           >
+            <IoMdMenu size={32} />
+           </label>:
             <button onClick={() => setShowNav(!showNav)} className="pt-1">
               <IoMdMenu size={32} />
             </button>
+            }
+           
+            
           </div>
           <div
             className={`absolute flex flex-col transition-all z-30 px-6 h-screen bg-base-200 top-0 w-96 menu menu-sm rounded-none duration-200 lg:hidden ${
@@ -195,7 +215,7 @@ function Navbar() {
       </div>
       <div className="navbar-end">
 
-      <Link href={""} className="px-4 text-sm hidden lg:block py-2">
+      <Link href={"/blogs"} className="px-4 text-sm hidden lg:block py-2">
           Blogs
         </Link>
         <a className="btn btn-ghost !min-h-[40px] h-[40px] hover:bg-transparent hover:text-blue-600 text-xs px-6 rounded-none">
@@ -204,9 +224,32 @@ function Navbar() {
         <a className="btn hidden !min-h-[40px] h-[40px] lg:flex rounded bg-green-600 hover:bg-green-500 text-white px-6">
           Sign Up
         </a>
+       
+         <button onClick={()=>setShowSidebar(!showSidebar)} className="px-4 relative py-2"><BsCart2 size={32} />
+        <span className="rounded-full bg-green-500 text-white absolute px-2 text-xs py-1 right-0 top-0 font-bold">2</span>
+        </button>
       </div>
+    </div>
+    
+      <CartSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+    
     </div>
   );
 }
 
 export default Navbar;
+function CartSidebar({setShowSidebar,showSidebar}) {
+  return (
+     <div>
+       <div className={`fixed h-screen w-96 z-50 duration-300 top-0 bg-base-300  ${showSidebar ? 'right-0':'-right-96'}`}>
+     <div className="flex items-center justify-between bg-base-100 pl-4">
+      <button>Add to cart</button>
+      <button onClick={()=>setShowSidebar(!showSidebar)} className="px-4 py-2 bg-rose-50 text-rose-600">Close</button>
+     </div>
+     </div>
+     {
+      showSidebar ? <button onClick={()=>setShowSidebar(!showSidebar)} className="w-screen h-screen bg-black bg-opacity-40 left-0 top-0 fixed z-10"></button>:''
+     }
+     </div>
+  );
+}

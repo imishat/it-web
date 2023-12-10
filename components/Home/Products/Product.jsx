@@ -11,7 +11,7 @@ function Product({ product }) {
   // added
   const [added,setAdded] = useState(false)
   return (
-    <div className="h-fit mb-7 border bg-base-200 relative">
+    <div className="h-fit border bg-base-200 relative">
       <button onClick={()=>setAdded(!added)} onMouseLeave={() => setShowNavigation(false)}
         onMouseEnter={() => setShowNavigation(true)} hidden={!showNavigation} className={`absolute right-1 duration-200 top-1 ${added ? 'bg-teal-500 text-white':'bg-base-100'} rounded px-2 py-1 z-50`}>
           {

@@ -3,18 +3,19 @@ import SubNavbar from "@/components/Headers/SubNavbar";
 import Categories from "@/components/Home/Categories/Categories";
 import Description from "@/components/Home/Description/Description";
 import Products from "@/components/Home/Products/Products";
-import LoginModal from "@/components/Modals/LoginModal";
+import CartSidebar from "@/components/Modals/CartSidebar";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className=" ">
     <SubNavbar />
     <Hero />
     <Categories/>
     <Products />
     <Description />
     
-    <LoginModal />
+    {/* <LoginModal /> */}
+    <CartSidebar />
     </main>
   )
 }
