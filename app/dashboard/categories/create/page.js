@@ -1,5 +1,5 @@
-import CreateCategory from "@/components/Dashboard/Categories/CreateCategory";
-import Layout from "@/components/Layout/Layout";
+import CreateCategory from "../../../../app/components/Dashboard/Categories/CreateCategory";
+import Layout from "../../../../app/components/Layout/Layout";
 
 function page() {
     return (

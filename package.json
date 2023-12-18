@@ -9,14 +9,31 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cloudinary/url-gen": "^1.14.0",
+    "@edgestore/react": "^0.1.4",
+    "@edgestore/server": "^0.1.4",
+    "@reduxjs/toolkit": "^2.0.1",
+    "@sssoflyyy/cloudinary-react": "^1.11.5",
+    "axios": "^1.6.2",
     "daisyui": "^4.4.19",
+    "lucide-react": "^0.295.0",
     "next": "14.0.3",
+    "next-progress": "^2.3.1",
+    "nextjs-progressbar": "^0.0.16",
     "react": "^18",
     "react-dom": "^18",
+    "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.49.2",
     "react-icons": "^4.12.0",
-    "swiper": "^8.4.7"
+    "react-quill": "^2.0.0",
+    "react-redux": "^9.0.4",
+    "redux": "^5.0.0",
+    "swiper": "^8.4.7",
+    "tailwind-merge": "^2.1.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/react": "18.2.45",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",

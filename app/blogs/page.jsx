@@ -1,4 +1,5 @@
-import Blogs from "@/components/Blogs/Blogs";
+import Blogs from "../components/Blogs/Blogs";
+
 
 function page() {
     return (

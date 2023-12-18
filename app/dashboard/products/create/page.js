@@ -1,5 +1,5 @@
-import CreateProduct from "@/components/Dashboard/Products/CreateProduct";
-import Layout from "@/components/Layout/Layout";
+import CreateProduct from "../../../../app/components/Dashboard/Products/CreateProduct";
+import Layout from "../../../../app/components/Layout/Layout";
 
 function page() {
     return (
