@@ -1,9 +1,9 @@
-import Product from "@/components/Products/Product";
+import ProductDescription from "../../../app/components/Products/ProductDescription";
 
 function page() {
     return (
         <div>
-            <Product />
+            <ProductDescription />
         </div>
     );
 }

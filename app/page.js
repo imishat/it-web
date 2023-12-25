@@ -1,11 +1,12 @@
-import Hero from "@/components/Headers/Hero/Hero";
-import SubNavbar from "@/components/Headers/SubNavbar";
-import Categories from "@/components/Home/Categories/Categories";
-import Description from "@/components/Home/Description/Description";
-import Products from "@/components/Home/Products/Products";
-import CartSidebar from "@/components/Modals/CartSidebar";
-
+'use client'
+import Hero from "../app/components/Headers/Hero/Hero";
+import SubNavbar from "../app/components/Headers/SubNavbar";
+import Categories from "../app/components/Home/Categories/Categories";
+import Description from "../app/components/Home/Description/Description";
+import Products from "../app/components/Home/Products/Products";
+import CartSidebar from "../app/components/Modals/CartSidebar";
 export default function Home() {
+
   return (
     <main className=" ">
     <SubNavbar />
@@ -13,8 +14,6 @@ export default function Home() {
     <Categories/>
     <Products />
     <Description />
-    
-    {/* <LoginModal /> */}
     <CartSidebar />
     </main>
   )

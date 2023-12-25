@@ -1,6 +1,6 @@
-import Blog from "@/components/Blogs/Blog";
+import Blog from "../../components/Blogs/Blog";
 
-function page() {
+async function page() { 
     return (
         <div>
             <Blog />

@@ -1,4 +1,4 @@
-import Shop from "@/components/Shop/Shop";
+import Shop from "../../../app/components/Shop/Shop";
 
 export const metadata = {
     title: 'Shop || IT Platform BD',
