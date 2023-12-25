@@ -19,7 +19,7 @@ function UpdateProduct() {
   useEffect(()=>{
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-service/${updateId}`)
     .then(res=>{
-      setService(res.data?.data?.result)
+      setService(res.data?.data)
     })
   },[updateId])
   const [value, setValue] = useState(service?.descripton);

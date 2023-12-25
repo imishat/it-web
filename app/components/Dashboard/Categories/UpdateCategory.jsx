@@ -15,10 +15,12 @@ function UpdateCategory() {
     // get category by id
     const [category,setCategory] = useState({})
     useEffect(()=>{
+     if(updateID){
       axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-category/${updateID}`)
       .then(res=>{
-        setCategory(res.data?.data?.result)
+        setCategory(res.data?.data)
       })
+     }
     },[updateID])
     console.log(category,'category')
     
