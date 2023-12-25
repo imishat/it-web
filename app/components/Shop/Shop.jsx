@@ -1,9 +1,23 @@
 "use client";
-import Link from "next/link";
-import { useState } from "react";
+import axios from "axios";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import Product from "../Home/Products/Product";
+import Sidebar from './Sidebar';
 
 function Shop() {
+  // params
+  const params = useParams()
+  // shopId
+  const {shopId} = params
+  // get category by shop id
+  const [category,setCategory] = useState()
+  useEffect(()=>{
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-category/${shopId}`)
+    .then(res=>{
+      setCategory(res.data?.data?.result)
+    })
+  },[shopId])
   const products = [
     {
       id: 1,
@@ -239,68 +253,12 @@ function Shop() {
     <div className="container mx-auto">
       <div className="h-20 mb-4 bg-base-300"></div>
       <div className="flex gap-2">
-        <div className="w-72 h-fit bg-base-300 ">
-          {/* Categories */}
-          <div className="p-2">
-            <h2 className="font-bold">Categories</h2>
-            <div className="w-full">
-              {[...Array(6).keys()]?.map((item, i) => {
-                return (
-                  <div key={i}>
-                    <Link className="w-full link-hover inline-block" href={"#"}>
-                      Category {i + 1}
-                    </Link>
-                  </div>
-                );
-              })}
-             
-            </div>
-            <div className="ml-4">
-              {[...Array(4).keys()]?.map((item, i) => {
-                return (
-                  <div key={i}>
-                    <Link className="w-full link-hover inline-block" href={"#"}>
-                      Category {i + 1}
-                    </Link>
-                  </div>
-                );
-              })}
-              </div>
-            <div className="ml-0">
-              {[...Array(4).keys()]?.map((item, i) => {
-                return (
-                  <div key={i}>
-                    <Link className="w-full link-hover inline-block" href={"#"}>
-                      Category {i + 1}
-                    </Link>
-                  </div>
-                );
-              })}
-              </div>
-          </div>
-          {/* Price */}
-          <div className="p-2">
-            <h2 className="capitalize font-bold">filter by price</h2>
-            <div
-              className="tooltip tooltip-open tooltip-success mt-8 w-full"
-              data-tip={price}
-            >
-              <input
-                onChange={(e) => setPrice(e.target.value)}
-                type="range"
-                title="100"
-                min={0}
-                max="1000"
-                defaultValue="40"
-                className="range range-success range-xs w-[90%] mx-2"
-              />
-            </div>
-          </div>
-        </div>
+      {/* Sidebar */}
+      <Sidebar />
         <div className="w-full">
             {/*  */}
           <div className="w-full flex items-center justify-between">
-            <h2></h2>
+            <h2>{category?.id ? category?.name:'All Services'}</h2>
            <div className="flex items-center gap-2">
             <p>Sort:</p>
            <select className="select select-bordered select-sm rounded-none my-2" name="" id="">

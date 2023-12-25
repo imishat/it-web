@@ -1,29 +1,63 @@
-
-
 "use client";
-import { useState } from "react";
+import axios from "axios";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
 function UpdateProduct() {
   // files
   const [files, setFiles] = useState([]);
-  console.log(files);
+  
   const { register, handleSubmit, reset } = useForm();
 
-  const [value, setValue] = useState("Description");
-  console.log(value);
+  const router = useParams()
+  const {updateId} = router
+
+  // get single service
+  const [service,setService] = useState({})
+  useEffect(()=>{
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-service/${updateId}`)
+    .then(res=>{
+      setService(res.data?.data?.result)
+    })
+  },[updateId])
+  const [value, setValue] = useState(service?.descripton);
+    // get all categories
+    const [categories,setCategories] = useState([])
+    useEffect(()=>{
+      axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-category`)
+      .then(res=>{
+        setCategories(res.data?.data?.result)
+      })
+    
+    },[value])
+// btn
+const [btn,setBtn] = useState('Update')
+ // update
   const handleCreateService = (data) => {
+    setBtn('Updating...')
     const serviceData = {
-      title: data?.title,
-      descripton: value,
-      servicePicture: data?.images,
-      categoryId: data?.categoryId,
+      title: data?.title||service?.title,
+      descripton: value||service?.descripton,
+      servicePicture:'',
+      categoryId: data?.categoryId||service?.categoryId,
     };
+    
+    axios.put(`${process.env.NEXT_PUBLIC_API_URL}/update-category/${updateId}`,serviceData)
+    .then(res=>{
+      if(res.data?.success){
+        setBtn('Updated')
+      }else{
+        setBtn('Try Again')
+      }
+    })
+    .catch(err=>setBtn('Try Again'))
     console.log(serviceData);
   };
 
+  const description = service?.descripton
+  console.log(value)
   return (
     <div>
       <div>
@@ -37,24 +71,30 @@ function UpdateProduct() {
               {...register("title", { required: true })}
               className="px-4 py-2 border border-gray-400"
               type="Title"
-              defaultValue={'Title'}
+              defaultValue={service?.title}
               id=""
             />
             {/* description */}
             <p className="px-4 w-full py-2 bg-base-200 mt-3">Description</p>
-            <ReactQuill theme="snow" value={value} onChange={setValue} />
+            <ReactQuill theme="snow" value={value} defaultValue={service?.descripton} onChange={setValue}  />
           </div>
           <div className="md:w-96 flex flex-col">
             {/* categories */}
-            <div className="w-full">
+              <div className="w-full">
               <p className="px-4 w-full py-2 bg-base-200 mt-3">
                 Select Categories
               </p>
               <select
+                {...register("categoryId", { required: true })}
                 className="select w-full select-bordered rounded-none"
                 id=""
               >
-                <option value="value">Value</option>
+                {categories?.length ?
+                  categories?.map((category,i)=>{
+                    return  <option key={i} value={category?.id}>{category?.name}</option>
+                  }):'No Categories'
+                }
+               
               </select>
             </div>
             {/* Images */}
@@ -79,7 +119,7 @@ function UpdateProduct() {
             </div>
             {/* Submit */}
             <button className="px-4 mt-6 py-2 bg-green-500 hover:bg-gray-400 text-white">
-              Create
+              {btn}
             </button>
           </div>
         </form>

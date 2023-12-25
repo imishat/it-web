@@ -1,62 +1,46 @@
+'use client';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Loader from "../../Loading/Loading";
 import Products from "../Products/Products";
 
 function Blogs() {
+  // page
+  const [page,setPage] = useState(1)
+  const [limit,setLimit] = useState(12)
+  // blogs
+  const [blogs,setBlogs] = useState([])
+    // delete btn
+    const [deleteBtn,setDeleteBtn] = useState('Confirm')
+  // loading
+  const [loading,setLoading] = useState(true)
+  useEffect(()=>{
+    setLoading(true)
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-blog`)
+    .then(res=>{
+      setBlogs(res.data?.data?.result)
+      setLoading(false)
+    })
+    .catch(err=>{
+      setLoading(false)
+      console.error(err);
+    })
+  },[deleteBtn==='Deleted'])
+  console.log(blogs)
     const tableData = {
         type:'Blogs',
-        data:[
-
-        {
-            id:1,
-          title: "Material XD Version",
-          price: "123",
-        },
-        {
-            id:2,
-          title: "Add Progress Track",
-          price: "123",
-        },
-        {
-            id:3,
-          title: "Fix Platform Errors",
-          price: "123",
-        },
-        {
-            id:4,
-          title: "Launch our Mobile App",
-          price: "123",
-        },
-        {
-            id:5,
-          title: "Add the New Pricing Page",
-          price: "123",
-        },
-        {
-            id:6,
-          title: "Add the New Pricing Page",
-          price: "123",
-        },
-        {
-            id:7,
-          title: "Add the New Pricing Page",
-          price: "123",
-        },
-        {
-            id:8,
-          title: "Add the New Pricing Page",
-          price: "123",
-        },
-        {
-            id:9,
-          title: "Add the New Pricing Page",
-          price: "123",
-        },
-        ]
+        data:blogs
     }
     return (
         <div>
-            <Products tableData={tableData} />
+          {
+            loading? <div className="flex items-center justify-center"><Loader /></div>
+            :
+            <Products tableData={tableData} deleteBtn={deleteBtn} setDeleteBtn={setDeleteBtn} page={page} setPage={setPage} />
+          }
+           
         </div>
     );
 }
-
+ 
 export default Blogs;

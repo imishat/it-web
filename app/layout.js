@@ -1,6 +1,6 @@
 "use client";
+import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 import { Inter } from "next/font/google";
-
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
 import Footer from "./components/Footer/Footer";
@@ -16,13 +16,19 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
-    <html id="html" lang="en" className="">
+    <html id="html" lang="en" className="container mx-auto">
       <head>
         <title>IT Platform BD || Home</title>
         <meta name="description" content="Description" />
       </head>
       <body className={`${inter.className} `}>
       <Provider store={store}>
+      <ProgressBar
+        height="4px"
+        color="#E77C01"
+        options={{ showSpinner: false }}
+        shallowRouting
+      />
          <Navbar />
         {children}
         <Footer />

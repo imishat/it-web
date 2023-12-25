@@ -10,7 +10,7 @@ function Layout({children}) {
     return (
         <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content m-6">
+        <div className="drawer-content md:m-6">
             {/* Children */}
          {children}
         </div>

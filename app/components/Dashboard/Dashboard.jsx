@@ -13,15 +13,60 @@ function Dashboard() {
   const [page,setPage] = useState(1)
   // limit
   const [limit,setLimit] = useState(5)
+  // btn
+  const [deleteBtn,setDeleteBtn] = useState('Confirm')
+  // count 
+  const [count,setCount] = useState(0)
+    // loading
+    const [loading,setLoading] = useState(true)
 
   const [serviceData,setServiceData] = useState([])
   useEffect(()=>{
+    setLoading(true)
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-service?page=${page}&limit=${limit}`)
     .then(res=>{
-      setServiceData(res.data?.data)
+      setServiceData(res.data?.data?.result)
+      setCount(res.data?.data?.total)
+      setLoading(false)
+    })
+    .catch(err=>{
+      setLoading(false)
+      console.error(err)})
+  },[page,limit])
+// services
+  const [allServices,setAllServices] = useState([])
+  useEffect(()=>{
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-service`)
+    .then(res=>{
+      setAllServices(res.data?.data?.result)
     })
     .catch(err=>console.error(err))
-  },[page,limit])
+  },[])
+  // blogs
+  const [blogs,setBlogs] = useState([])
+  useEffect(()=>{
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-blog`)
+    .then(res=>{
+      setBlogs(res.data?.data?.result)
+    })
+    .catch(err=>console.error(err))
+  },[])
+  // categories
+  const [categories,setCategories] = useState([])
+  useEffect(()=>{
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-category`)
+    .then(res=>{
+      setCategories(res.data?.data?.result)
+    })
+    .catch(err=>console.error(err))
+  },[])
+
+  // data
+  const tableData ={
+    type:'Services',
+    data:serviceData
+  }
+
   return (
     <div>
        <div className="mt-12">
@@ -31,8 +76,8 @@ function Dashboard() {
            <BsShop size={24} />
           </div>
           <div className="p-4 text-right">
-            <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Products</p>
-            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">53</h4>
+            <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Services</p>
+            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{allServices?.length}</h4>
           </div>
           {/* <div className="border-t border-blue-gray-50 p-4">
             <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
@@ -46,7 +91,7 @@ function Dashboard() {
           </div>
           <div className="p-4 text-right">
             <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Total Blogs</p>
-            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">2,300</h4>
+            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{blogs?.length}</h4>
           </div>
           {/* <div className="border-t border-blue-gray-50 p-4">
             <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
@@ -60,7 +105,7 @@ function Dashboard() {
           </div>
           <div className="p-4 text-right">
             <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Reviews</p>
-            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">3,462</h4>
+            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">0</h4>
           </div>
           {/* <div className="border-t border-blue-gray-50 p-4">
             <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
@@ -74,7 +119,7 @@ function Dashboard() {
           </div>
           <div className="p-4 text-right">
             <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Categories</p>
-            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">3,430</h4>
+            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{categories?.length}</h4>
           </div>
           {/* <div className="border-t border-blue-gray-50 p-4">
             <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
@@ -86,7 +131,7 @@ function Dashboard() {
       
       <div className="mb-4 grid grid-cols-1 gap-6 xl:grid-cols-3">
        {/* Products */}
-       <Products tableData={serviceData} />
+       <Products loading={loading} deleteBtn={deleteBtn} setDeleteBtn={setDeleteBtn} count={count} tableData={tableData} />
         {/* Categories */}
        <Categories />
       </div>

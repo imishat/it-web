@@ -9,7 +9,7 @@ import Loader from "../../Loading/Loading";
 function Categories() {
   const [btn,setBtn] = useState('Delete')
   // loading
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   // get all categories
   const [categories, setCategories] = useState([]);
   useEffect(() => {
@@ -17,7 +17,7 @@ function Categories() {
     axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}/all-category`)
       .then((res) => {
-        setCategories(res.data?.data);
+        setCategories(res.data?.data?.result);
         setLoading(false);
       })
       .catch((err) => setLoading(false));
@@ -102,14 +102,14 @@ function Categories() {
         </div>
       </div>
 
-      <Modal actionData={actionData} btn={btn} setBtn={setBtn} />
+      <Modal actionData={actionData} setActionData={setActionData} btn={btn} setBtn={setBtn} />
     </div>
   );
 }
 
 export default Categories;
 
-const Modal = ({ actionData,btn,setBtn }) => {
+const Modal = ({ actionData,btn,setBtn,setActionData }) => {
  
   const deleteCategory = id =>{
     setBtn('Deleting...')

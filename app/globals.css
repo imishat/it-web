@@ -19,6 +19,9 @@ body {
   border-radius: 12px 0 0 12px;
   width: 21px;
 }
+pre.ql-syntax {
+  text-wrap: wrap;
+}
 /* image gallery */
 .image-gallery-left-nav .image-gallery-svg {
   height: 75px;

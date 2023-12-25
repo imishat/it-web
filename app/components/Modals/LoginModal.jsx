@@ -16,7 +16,7 @@ function LoginModal({}) {
                 {/* Login form */}
               <input className="px-4 border border-gray-700 py-2 rounded w-full" placeholder="Email" type="text" name="" id="" />
                 <input className="px-4 border border-gray-700 py-2 rounded w-full" placeholder="Password" type="password" name="" id="" />
-               <button className="px-4 bg-green-600 text-white hover:bg-green-500 py-2 rounded w-full">Login</button>
+               <button className="px-4 bg-[#E77C01] text-white duration-300 hover:bg-[#e28c29] py-2 rounded w-full">Login</button>
               </form>
                {/* Or Social login */}
                <div className="w-full relative">

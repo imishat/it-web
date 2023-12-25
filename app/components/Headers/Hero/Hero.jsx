@@ -29,7 +29,7 @@ function Hero() {
         <div className="w-full flex justify-between xl:justify-around z-10 container mx-auto">
           <div className="sm:h-56 w-[400px] xl:w-[500px] md:h-72 lg:h-96 xl:h-[480px] flex items-center">
             <div>
-              <h2 className="text-4xl font-bold">
+              <h2 className="text-4xl font-bold capitalize text-white">
                 Buy affordable Online Work services
               </h2>
               <div className="flex items-center my-6 ">
@@ -45,14 +45,14 @@ function Hero() {
                     id=""
                   />
                 </div>
-                <button className="px-4 bg-green-400 py-3">Search</button>
+                <button className="px-4 bg-[#E77C01] border border-transparent py-3">Search</button>
               </div>
               <div className="flex items-center gap-2">
-                <p>Popular:</p>
+                <p className="font-bold">Popular:</p>
                 <ul className="flex flex-wrap items-center gap-1">
                   <li>
                     <Link
-                      className="bg-blue-50 border border-blue-200 px-2 py-1"
+                      className="bg-blue-50 border text-[#E77C01] border-blue-200 px-2 py-1"
                       href={`#`}
                     >
                       Web Design
@@ -60,7 +60,7 @@ function Hero() {
                   </li>
                   <li>
                     <Link
-                      className="bg-blue-50 border border-blue-200 px-2 py-1"
+                      className="bg-blue-50 border text-[#E77C01] border-blue-200 px-2 py-1"
                       href={`#`}
                     >
                       Logo Design
@@ -68,7 +68,7 @@ function Hero() {
                   </li>
                   <li>
                     <Link
-                      className="bg-blue-50 border border-blue-200 px-2 py-1"
+                      className="bg-blue-50 border text-[#E77C01] border-blue-200 px-2 py-1"
                       href={`#`}
                     >
                       Social Media Design
@@ -76,7 +76,7 @@ function Hero() {
                   </li>
                   <li>
                     <Link
-                      className="bg-blue-50 border border-blue-200 px-2 py-1"
+                      className="bg-blue-50 border text-[#E77C01] border-blue-200 px-2 py-1"
                       href={`#`}
                     >
                       Wordpress

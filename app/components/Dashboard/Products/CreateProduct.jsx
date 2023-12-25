@@ -24,10 +24,10 @@ function CreateProduct() {
   useEffect(()=>{
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-category`)
     .then(res=>{
-      setCategories(res.data?.data)
+      setCategories(res.data?.data?.result)
     })
-  },[])
-console.log(categories,'categories')
+  },[value])
+  
   const [image, setImage] = useState([]);
 
   const onChange = (e) => {
@@ -125,8 +125,8 @@ console.log(categories,'categories')
               >
                 {categories?.length ?
                   categories?.map((category,i)=>{
-                    return  <option value={category?.id}>{category?.name}</option>
-                  }):''
+                    return  <option key={i} value={category?.id}>{category?.name}</option>
+                  }):'No Categories'
                 }
                
               </select>

@@ -24,7 +24,7 @@ function CreateBlog() {
   useEffect(()=>{
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-category`)
     .then(res=>{
-      setCategories(res.data?.data)
+      setCategories(res.data?.data?.result)
     })
   },[])
 console.log(categories,'categories')
@@ -43,11 +43,10 @@ console.log(categories,'categories')
       };
     }
   };
-  const [url, setUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const handleUpload = (img) => {
     setLoading(true);
     const data = new FormData();
-    imgsSrc.map((img) => {
       data.append("file", img);
       data.append("upload_preset", "services_image");
       data.append("cloud_name", "dtmfvaux5");
@@ -59,13 +58,12 @@ console.log(categories,'categories')
         .then((data) => {
           const imageDataUrl = data.secure_url;
           setLoading(false);
-          setUrl(imageDataUrl)
+          setImageUrl(imageDataUrl)
         })
         .catch((err) => {
           console.log(err);
           setLoading(false);
         });
-    });
   };
 
   // btn
@@ -77,10 +75,9 @@ console.log(categories,'categories')
     const blogData = {
       title: data?.title,
       descripton: value,
-      servicePicture: 'imageData',
-      categoryId: 1,
+      Picture: imageUrl
     };
-    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/create-service`,serviceData)
+    axios.post(`${process.env.NEXT_PUBLIC_API_URL}/create-blog`,blogData)
     .then(res=>{
       if(res.data?.success){
         setBtn('Created')
@@ -112,7 +109,7 @@ console.log(categories,'categories')
           </div>
           <div className="md:w-96 flex flex-col">
             {/* categories */}
-            <div className="w-full">
+            {/* <div className="w-full">
               <p className="px-4 w-full py-2 bg-base-200 mt-3">
                 Select Categories
               </p>
@@ -123,25 +120,32 @@ console.log(categories,'categories')
               >
                 {categories?.length ?
                   categories?.map((category,i)=>{
-                    return  <option value={category?.id}>{category?.name}</option>
+                    return  <option key={i} value={category?.id}>{category?.name}</option>
                   }):''
                 }
                
               </select>
-            </div>
+            </div> */}
             {/* Images */}
-            <div className="mt-5">
-              <p className="px-4 w-full py-2 bg-base-200 mt-3">Select Images</p>
-              <label className="w-full h-44 border-dashed duration-300 border border-gray-300 hover:border-gray-400 flex items-center justify-center">
-                <button
-                  className=""
-                  onClick={() =>
-                    document.getElementById("my_modal_2").showModal()
-                  }
+            <div className="mt-0">
+              {
+                imageUrl ? <div className="w-full h-44 border-dashed duration-300 border border-gray-300 hover:border-gray-400 flex items-center justify-center">
+                  <img className="w-full h-44 border-dashed duration-300 border border-gray-300 hover:border-gray-400 flex items-center justify-center object-cover" src={imageUrl} alt="" />
+                  </div>
+                :
+                <>
+                 <p className="px-4 w-full py-2 bg-base-200 mt-3">Select Images</p>
+              <label htmlFor="image" className="w-full h-44 border-dashed duration-300 border border-gray-300 hover:border-gray-400 flex items-center justify-center">
+                <span
+                  className="flex items-center justify-center"
                 >
-                  Select Images
-                </button>
+                  <input onChange={(e)=>handleUpload(e.target.files[0])} type="file" hidden name="" id="image" />
+                {loading?'Uploading...':'Select Images'}  
+                </span>
               </label>
+              </>
+              }
+             
             </div>
             {/* Submit */}
             <button className="px-4 mt-6 py-2 bg-green-500 hover:bg-gray-400 text-white">
