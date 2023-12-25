@@ -24,7 +24,7 @@ function UpdateBlog() {
   useEffect(()=>{
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-category`)
     .then(res=>{
-      setCategories(res.data?.data?.result)
+      setCategories(res.data?.data)
     })
   },[])
 console.log(categories,'categories')
