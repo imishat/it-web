@@ -4,48 +4,66 @@ import { useState } from "react";
 import { BsCart, BsCartCheck } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 // import addToCart from '../../../../redux/features/cart/cartSlice';
-import { addToCart, removeFromCart } from "../../../../redux/features/cart/cartSlice";
+import {
+  addToCart,
+  removeFromCart,
+} from "../../../../redux/features/cart/cartSlice";
 import ProductSlider from "./ProductSlider";
 
 function Product({ product }) {
-
-  // cart data 
-  const cart = useSelector(state=>state.cart)
+  // console.log(product,'product')
+  // cart data
+  const cart = useSelector((state) => state.cart);
   // dispatch
   const dispatch = useDispatch();
   // image
-  const images = product?.images;
+  const images = JSON.parse(product?.servicePicture);
   // show hide navigation
   const [showNavigation, setShowNavigation] = useState(false);
   // is added in cart
-  const isAdded = cart.find(item=>item.id===product?.id)
+  const isAdded = cart.find((item) => item.id === product?.id);
 
   // handle add to cart
-  const handleAddToCart=()=>{
-    dispatch(addToCart({id:product?.id,title:product?.title,image:product?.images[0]}))
-  }
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
 
-
-
-  // 
+  //
   return (
-    <div className="h-fit border bg-base-200 relative">
-      <button onMouseLeave={() => setShowNavigation(false)}
-        onMouseEnter={() => setShowNavigation(true)} hidden={!showNavigation} className={`absolute right-1 duration-200 top-1 ${isAdded ? 'bg-teal-500 text-white':'bg-base-100'} rounded px-2 py-1 z-50`}>
-          {
-            isAdded  ?<BsCartCheck onClick={()=>dispatch(removeFromCart(product?.id))} size={28} />: <BsCart onClick={()=>handleAddToCart()} size={28} />
-          }
-          
-          
-          </button>
+    <div className="h-fit border bg-base-200 w-full relative">
+      <button
+        onMouseLeave={() => setShowNavigation(false)}
+        onMouseEnter={() => setShowNavigation(true)}
+        hidden={!showNavigation}
+        className={`absolute right-1 duration-200 top-1 ${
+          isAdded ? "bg-teal-500 text-white" : "bg-base-100"
+        } rounded px-2 py-1 z-50`}
+      >
+        {isAdded ? (
+          <BsCartCheck
+            onClick={() => dispatch(removeFromCart(product?.id))}
+            size={28}
+          />
+        ) : (
+          <BsCart onClick={() => handleAddToCart()} size={28} />
+        )}
+      </button>
       <div
         className="w-full"
         onMouseLeave={() => setShowNavigation(false)}
         onMouseEnter={() => setShowNavigation(true)}
       >
         <ProductSlider images={images} showNavigation={showNavigation} />
-        <div className="py-2">
-          <Link className="text-sm px-1" href={`/product/12`}>PSD TO Html Convert PSD TO Html Convert</Link>
+        <div className="py-2 px-1">
+          <Link
+            className="text-sm font-bold px-1"
+            href={`/product/${product?.id}`}
+          >
+            {product?.title}
+          </Link>
+          <h1 className="flex justify-end text-orange-500 font-bold">
+            Price: <span className="text-xl">${product?.price}</span>
+          </h1>
         </div>
       </div>
     </div>

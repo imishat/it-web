@@ -9,7 +9,10 @@ function CartSidebar({setShowSidebar,showSidebar}) {
   // cart data
   // const [cartData,setCartData] 
   const cart = useSelector(state=>state.cart)
-  
+  // total price
+  const totalPrice = cart.reduce((acc, item) => {
+    return acc + item.price;
+  }, 0)
     return (
       <div>
       <div className={`fixed h-screen overflow-y-auto w-96 z-50 duration-300 top-0 bg-base-300  ${showSidebar ? 'right-0':'-right-96'}`}>
@@ -22,11 +25,11 @@ function CartSidebar({setShowSidebar,showSidebar}) {
       cart?.map((cart,i)=>{
          return <div key={i} className="flex  my-2 border-b gap-2 px-1 border-gray-400">
            <div className="w-14 overflow-hidden h-12">
-           <img className=" object-cover w-full h-full object-top border border-gray-400 rounded" src={cart?.image?.image} alt="" />
+           <img className=" object-cover w-full h-full object-top border border-gray-400 rounded" src={cart?.servicePicture? JSON.parse(cart?.servicePicture)[0]?.url:''} alt="" />
            </div>
            <div className="flex flex-col space-y-1">
              <h2 className="font-bold text-sm leading-4">{cart?.title}</h2>
-             <p className="text-sm">12$</p>
+             <p className="text-sm">{cart?.price}$</p>
            </div>
            <button onClick={()=>dispatch(removeFromCart(cart?.id))}>
              <IoCloseCircleOutline className="text-rose-600 bg-rose-100 p-1 rounded-full" size={32} />
@@ -40,7 +43,7 @@ function CartSidebar({setShowSidebar,showSidebar}) {
     </div>
     <Link href={`/checkout`} className="flex items-center bg-green-100 text-green-600 py-2 hover:bg-green-200 cursor-pointer gap-3 font-bold sticky bottom-0 justify-center">
      <button>Checkout</button>
-     <p>12$</p>
+     <p>{totalPrice}$</p>
     </Link>
     </div>
     {

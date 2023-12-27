@@ -2,41 +2,74 @@
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../../redux/features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../../../redux/features/cart/cartSlice";
+import Skeleton from "../Loading/Skeleton";
 import ImageSlider from "./ImageSlider";
 import Reviews from "./Reviews";
 
 function ProductDescription() {
   const router= useParams()
   const {productId} = router
-
+  // cart data
+  const cart = useSelector((state) => state.cart);
+  
   // single data
   const [product,setProduct] = useState({})
+    // is added in cart
+    const isAdded = cart.find((item) => item.id === product?.id);
+
+    // loading
+    const [loading,setLoading] = useState(true)
   // get single product
   useEffect(()=>{
+    setLoading(true)
+   if(productId){
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-service/${productId}`)
     .then(res=>{
-      setProduct(res.data?.data?.result)
+      setProduct(res.data?.data)
+      setLoading(false)
+    }).catch(err=>{
+    setLoading(false)
     })
+   }
   },[productId])
-  console.log(product,'product')
+  
   // dispatch
   const dispatch = useDispatch()
     // handle add to cart
     const handleAddToCart=()=>{
-      dispatch(addToCart({id:'product?.id',title:'product?.title',image:'product?.images[0]'}))
+      dispatch(addToCart(product))
     }
-  
+
+    // images
+    const images = product?.servicePicture ? JSON.parse(product?.servicePicture):''
+  console.log(images,'images')
     return (
         <section className="text-gray-700 container mx-auto body-font overflow-hidden  bg-white">
   <div className="container  md:pt-24 max-h-fit  mx-auto">
-    <div className="lg:w-full mx-auto flex flex-col md:flex-row ">
+    {
+      loading ? 
+     
+      <div className="flex">
+         <div className="lg:w-2/3 w-full h-96 lg:pl-10  lg:mt-0 px-2">
+         
+         <Skeleton />
+         <Skeleton />
+      </div>
+      <div className="lg:w-1/3 w-full h-96">
+
+      <Skeleton />
+      <Skeleton />
+      </div>
+      </div>
+      :
+      <div className="lg:w-full mx-auto flex flex-col md:flex-row ">
       {/* <Image width={900} height={900} alt="products" className="lg:w-1/2 w-full object-cover object-center  rounded border border-gray-200" src="https://www.whitmorerarebooks.com/pictures/medium/2465.jpg"/> */}
-      <ImageSlider />
+      <ImageSlider images={images} />
       <div className="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 px-2">
         <h2 className="text-sm title-font text-gray-500 tracking-widest">PRODUCT NAME</h2>
-        <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">The Catcher in the Rye</h1>
+        <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{product?.title}</h1>
         <div className="flex mb-4">
           <span className="flex items-center">
             <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" stroke-linejoin="round" strokeWidth="2" className="w-4 h-4 text-yellow-500" viewBox="0 0 24 24">
@@ -54,7 +87,7 @@ function ProductDescription() {
             <svg fill="none" stroke="currentColor" strokeLinecap="round" stroke-linejoin="round" strokeWidth="2" className="w-4 h-4 text-yellow-500" viewBox="0 0 24 24">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
             </svg>
-            <span className="text-gray-600 ml-3">4 Reviews</span>
+            <span className="text-gray-600 ml-3">{Reviews?.length} Reviews</span>
           </span>
           <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
             <a className="text-gray-500">
@@ -74,7 +107,7 @@ function ProductDescription() {
             </a>
           </span>
         </div>
-        <p className="leading-relaxed">Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.</p>
+        <p className="leading-relaxed">{product?.descripton?.replace(/<[^>]*>?/gm, '')?.split(' ')?.slice(0,112)?.join(' ')}</p>
         <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
           {/* <div className="flex">
             <span className="mr-3">Color</span>
@@ -100,8 +133,16 @@ function ProductDescription() {
           </div> */}
         </div>
         <div className="flex">
-          <span className="title-font font-medium text-2xl text-gray-900">$58.00</span>
-          <button onClick={()=>handleAddToCart()} className="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Add To Cart</button>
+          <span className="title-font font-medium text-2xl text-gray-900">${product?.price}</span>
+          {
+            isAdded ?
+            <button className="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded" onClick={()=>dispatch(removeFromCart(product?.id))}>
+            Added to cart
+          </button>
+            :
+            <button onClick={()=>handleAddToCart()} className="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Add To Cart</button>
+          }
+          
           <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
             <svg fill="currentColor" strokeLinecap="round" stroke-linejoin="round" strokeWidth="2" className="w-5 h-5" viewBox="0 0 24 24">
               <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
@@ -110,8 +151,10 @@ function ProductDescription() {
         </div>
       </div>
     </div>
+    }
+  
   </div>
-  <Reviews />
+  <Reviews product={product} />
 </section>
     );
 }

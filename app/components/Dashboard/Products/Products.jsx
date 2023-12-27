@@ -9,6 +9,8 @@ import Loader from "../../Loading/Loading";
 function Products({tableData,setPage,page,deleteBtn,setDeleteBtn,count,loading}) {
   const router = usePathname();
 
+  
+
   const productData = tableData?.data
 
   // slice
@@ -99,6 +101,15 @@ function Products({tableData,setPage,page,deleteBtn,setDeleteBtn,count,loading})
                   image
                 </p>
               </th>
+              {
+                router === "/dashboard/blogs" ? '':
+                <th className="border-b border-blue-gray-50 w-12  py-3 px-6 text-left">
+                <p className="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">
+                  Price
+                </p>
+              </th>
+              }
+              
               <th className="border-b border-blue-gray-50 w-12 py-3 px-6 text-left">
                 <p className="block antialiased font-sans text-[11px] font-medium uppercase text-blue-gray-400">
                   action
@@ -108,6 +119,7 @@ function Products({tableData,setPage,page,deleteBtn,setDeleteBtn,count,loading})
           </thead>
           <tbody>
             { products?.map((table, i) => {
+              console.log(table,'table?.servicePicture')
               return (
                 <tr key={i}>
                   <td className="py-3 px-5 border-b border-blue-gray-50">
@@ -119,9 +131,23 @@ function Products({tableData,setPage,page,deleteBtn,setDeleteBtn,count,loading})
                   </td>
                   <td className="py-3 px-5 border-b border-blue-gray-50">
                     <p className="block antialiased font-sans text-xs font-medium text-blue-gray-600">
-                      <img className="w-12" src={table?.Picture} alt="" />
+                      {
+                        router === "/dashboard/blogs" ?
+                        <img className="w-12" src={table?.Picture} alt="" />
+                        :
+                        <img className="w-12 h-12 object-cover object-top" src={table?.servicePicture?.length? JSON.parse(table?.servicePicture)[0]?.url:''} alt="" />
+                      }
                     </p>
                   </td>
+                  {/* price */}
+                  {
+                router === "/dashboard/blogs" ? '':
+                  <td className="py-3 px-5 border-b border-blue-gray-50">
+                    <p className="block antialiased font-sans text-xs font-medium text-blue-gray-600">
+                    {table?.price}
+                    </p>
+                  </td>
+            }
                   <td className="py-3 px-5 border-b border-blue-gray-50">
                     <div className="w-10/12 flex items-center gap-1">
                     <Link href={`${tableData?.type==='Products' ? `/dashboard/products/update/${table?.id}`:`/dashboard/blogs/update/${table?.id}`}`}>

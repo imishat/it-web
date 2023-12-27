@@ -35,7 +35,7 @@ function Categories() {
   });
   return (
     <div>
-      <div className="w-full bg-base-200 h-96 min-w-[300px] rounded-xl">
+      <div className="w-full bg-base-100 border shadow-md h-96 min-w-[300px] rounded-xl">
         <div className="w-full bg-base-300 px-2 py-2 flex items-center justify-between rounded-t-xl font-bold">
           <h2 className="text-sm">Categories</h2>
           <Link
