@@ -4,13 +4,13 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 
-function Sidebar() {
+function Sidebar({price, setPrice}) {
 
     // params
     const params = useParams()
     // shop id
     const {shopId} = params
-    console.log(shopId)
+    
      // loading
   const [loading, setLoading] = useState(true);
   // get all categories
@@ -29,10 +29,9 @@ function Sidebar() {
       });
   }, []);
   
-  // range slider
-  const [price, setPrice] = useState(40);
+  
     return (
-        <div className="w-72 h-fit bg-base-300 ">
+        <div className="md:w-72 h-fit bg-base-300 ">
           {/* Categories */}
           <div className="p-2">
             <h2 className="font-bold">Categories</h2>
@@ -59,16 +58,16 @@ function Sidebar() {
           <div className="p-2">
             <h2 className="capitalize font-bold">filter by price</h2>
             <div
-              className="tooltip tooltip-open tooltip-success mt-8 w-full"
+              className="tooltip tooltip-open tooltip-primary text-white mt-12 w-full"
               data-tip={price}
             >
               <input
                 onChange={(e) => setPrice(e.target.value)}
                 type="range"
-                title="100"
+                title={price}
                 min={0}
                 max="1000"
-                defaultValue="40"
+                defaultValue={price}
                 className="range range-success range-xs w-[90%] mx-2"
               />
             </div>

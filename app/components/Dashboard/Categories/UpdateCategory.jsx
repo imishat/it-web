@@ -1,10 +1,12 @@
 'use client';
 import axios from "axios";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 function UpdateCategory() {
+  // router
+  const router = useRouter()
   // route
   const {updateID} = useParams()
       // form
@@ -50,13 +52,15 @@ function UpdateCategory() {
         console.log(data)
         setBtn('Updating...')
         const updateData = {
-          name:data?.name,
-          picture:url,
+          name:data?.name||category?.name,
+          picture:url||category?.picture,
         }
-        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/update-category/${updateID}`,updateData)
+        console.log(updateData,'updateData')
+        axios.put(`${process.env.NEXT_PUBLIC_API_URL}/update-category/${updateID}`,updateData)
         .then(res=>{
           if(res.data.success){
             setBtn('Updated')
+            router.push(`/dashboard/categories`)
           }else{
             setBtn('Try Again')
           }
@@ -72,10 +76,13 @@ function UpdateCategory() {
           type="text"
           id=""
         />
-        <p className="px-4 py-2 bg-base-200 mt-2">Images</p>
+        <p className="px-4 py-2 bg-base-200 mt-2">Selected Image</p>
         <div>
-          Selected Image
-          <img className="w-24 h-24 object-cover flex justify-center mx-auto" src={url||category?.picture} alt="" />
+          
+          {
+            loading? <div  className="w-24 h-24 object-cover flex justify-center mx-auto">Uploading...</div>:  <img className="w-24 h-24 object-cover flex justify-center mx-auto" src={url||category?.picture} alt="" />
+          }
+        
         </div>
         <input onChange={e=>uploadImage(e.target.files[0])}
           className="file-input rounded-none file-input-bordered"

@@ -13,6 +13,37 @@ body {
 .ql-editor {
   min-height: 200px;
 }
+
+/* tooltip */
+.tooltip:before {
+  background: #e77c01;
+  color: white;
+}
+
+button.image-gallery-thumbnail {
+  height: 69px !important;
+  overflow: hidden !important;
+  border: 2px solid;
+}
+
+.image-gallery-slide.image-gallery-center {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.image-gallery-image {
+  object-fit: cover !important;
+  object-position: top !important;
+}
+
+/* tooltip */
+.tooltip:after {
+  border-color: #e77c01 transparent transparent transparent;
+}
+
+.range {
+  --range-shdw: #e77c01;
+}
 /* image gallery */
 .image-gallery-right-nav .image-gallery-svg {
   height: 75px;

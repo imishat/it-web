@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
@@ -7,6 +8,10 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch } from "react-redux";
 function UpdateBlog() {
+  // router
+  const params = useParams()
+  // updateid
+  const {updateId} = params
   // dispatch
   const dispatch = useDispatch();
 
@@ -19,15 +24,17 @@ function UpdateBlog() {
   const imageData = [];
   // ID
 
-  // get all categories
-  const [categories,setCategories] = useState([])
+  // get single blog
+  const [blog,setBlog] = useState([])
   useEffect(()=>{
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-category`)
+   if(updateId){
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-blog/${updateId}`)
     .then(res=>{
-      setCategories(res.data?.data)
+      setBlog(res.data?.data)
     })
+   }
   },[])
-console.log(categories,'categories')
+// console.log(categories,'categories')
   const [image, setImage] = useState([]);
 
   const onChange = (e) => {
@@ -70,7 +77,7 @@ console.log(categories,'categories')
   const [btn,setBtn] = useState('Create')
   
   // create Blog
-  const handleCreateBlog = (data) => {
+  const handleUpdateBlog = (data) => {
     setBtn('Creating...')
     const blogData = {
       title: data?.title,
@@ -92,12 +99,13 @@ console.log(categories,'categories')
     <div>
       <div>
         <form
-          onSubmit={handleSubmit(handleCreateBlog)}
+          onSubmit={handleSubmit(handleUpdateBlog)}
           className="md:flex gap-4"
         >
           <div className="flex flex-col w-full">
             <p className="px-4 w-full py-2 bg-base-200 mt-3">Title</p>
             <input
+            defaultValue={blog?.title}
               {...register("title", { required: true })}
               className="px-4 py-2 border border-gray-400"
               type="Title"
@@ -134,13 +142,13 @@ console.log(categories,'categories')
                   </div>
                 :
                 <>
-                 <p className="px-4 w-full py-2 bg-base-200 mt-3">Select Images</p>
+                 <p className="px-4 w-full py-2 bg-base-200 mt-3">Select Image</p>
               <label htmlFor="image" className="w-full h-44 border-dashed duration-300 border border-gray-300 hover:border-gray-400 flex items-center justify-center">
                 <span
                   className="flex items-center justify-center"
                 >
                   <input onChange={(e)=>handleUpload(e.target.files[0])} type="file" hidden name="" id="image" />
-                {loading?'Uploading...':'Select Images'}  
+                {loading?'Uploading...':'Select Image'}  
                 </span>
               </label>
               </>

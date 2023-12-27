@@ -3,7 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Categories from "./Categories/Categories";
+import Skeleton from '../Loading/Skeleton';
 
 function Blogs() {
   // loading
@@ -11,22 +11,33 @@ function Blogs() {
   // get all categories
   const [blogs, setBlogs] = useState([]);
 
+  // page
+  const [page,setPage] = useState(1)
+  // limit 
+  const [limit,setLimit] = useState(12)
+// count
+  const [count,setCount] = useState(0)
+
   useEffect(() => {
     setLoading(true);
     axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}/all-blog`)
       .then((res) => {
         setBlogs(res.data?.data?.result);
+        setCount(res.data?.data?.total)
         setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
       });
-  }, []);
+  }, [limit,page]);
+
+  // pages for count
+  const pages = Math.ceil(count/limit)
   return (
     <div className="mt-10 container mx-auto">
       <div className="block md:flex w-full flex-col md:space-x-2 px-2 lg:p-0">
-        <div className="flex">
+        {/* <div className="flex">
           <Link
             className="mb-4 md:mb-0 w-full md:w-2/3 relative rounded inline-block h-[24em]"
             href={`/blog/12`}
@@ -93,7 +104,7 @@ function Blogs() {
                   width={400}
                   height={400}
                   alt=""
-                  src="https://images-na.ssl-images-amazon.com/images/M/MV5BODFjZTkwMjItYzRhMS00OWYxLWI3YTUtNWIzOWQ4Yjg4NGZiXkEyXkFqcGdeQXVyMTQ0ODAxNzE@._V1_UX172_CR0,0,172,256_AL_.jpg"
+                  src={``}
                   className="h-10 w-10 rounded-full mr-2 object-cover"
                 />
                 <div>
@@ -109,21 +120,33 @@ function Blogs() {
               </div>
             </div>
           </a>
-        </div>
+        </div> */}
         <div className="block lg:flex lg:space-x-2 px-2 lg:p-0 mt-10 mb-10">
           {/* <!-- post cards --> */}
           <div className="w-full lg:w-2/3">
-            {blogs?.length ? (
+            {loading ?
+            <div>
+             {
+              [...Array(12).keys()]?.map((item,i)=>{
+                return  <Skeleton key={i} />
+              })
+             }
+            </div>
+            :
+            blogs?.length ? (
               blogs?.map((blog) => {
+                const image = blog?.Picture
                 return (
                   <div
                     key={blog?.id}
                     className="block rounded w-full lg:flex mb-10"
                   >
                     <div
-                      className="h-48 lg:w-48 flex-none bg-cover text-center rounded-xl  opacity-75 bg-[url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80')]"
+                      className={`h-48 lg:w-48 flex-none bg-cover text-center rounded-xl `}
                       title="deit is very important"
-                    ></div>
+                    >
+                      <Image src={image} className="w-full h-full object-cover rounded-xl" height={500} width={500} />
+                    </div>
                     <div className="bg-white rounded px-4 flex flex-col justify-between leading-normal">
                       <div>
                         <Link className="" href={`/blog/${blog?.id}`}>
@@ -135,20 +158,19 @@ function Blogs() {
                           {blog?.descripton?.replace(/(<([^>]+)>)/gi, "")?.split(' ')?.slice(0,40)?.join(' ')}...
                         </p>
                       </div>
-                      <div className="flex mt-3">
+                      <div className="flex mt-3 items-center">
                         <Image
                           width={400}
                           height={400}
                           alt=""
-                          src="https://randomuser.me/api/portraits/men/86.jpg"
+                          src={`https://pbs.twimg.com/profile_images/1707101905111990272/Z66vixO-_normal.jpg`}
                           className="h-10 w-10 rounded-full mr-2 object-cover"
                         />
                         <div>
                           <p className="font-semibold text-gray-700 text-sm capitalize">
                             {" "}
-                            eduard franz{" "}
+                            Admin{" "}
                           </p>
-                          <p className="text-gray-600 text-xs"> 14 Aug </p>
                         </div>
                       </div>
                     </div>
@@ -161,7 +183,27 @@ function Blogs() {
           </div>
 
           {/* <!-- right sidebar --> */}
-          <Categories />
+          {/* <Categories /> */}
+        </div>
+      </div>
+         {/* Pagination */}
+         <div className="flex justify-center my-6">
+        <div className="join">
+          {pages > 1
+            ? [...Array(pages).keys()]?.map((item, i) => {
+                return (
+                  <button
+                    onClick={() => setPage(i + 1)}
+                    key={i}
+                    className={`join-item btn ${
+                      page === i + 1 ? "btn-active" : ""
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                );
+              })
+            : ""}
         </div>
       </div>
     </div>
