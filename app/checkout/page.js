@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaRegUser } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import ReactWhatsapp from "react-whatsapp";
+// import ReactWhatsapp from "react-whatsapp";
 // import ReactWhatsapp from "react-whatsapp";
 
 function page() {
@@ -278,7 +278,7 @@ function page() {
               <p class="text-2xl font-semibold">${totalPrice}</p>
             </div>
           </div>
-          <ReactWhatsapp
+          <div
             className="mt-4 mb-8 w-full rounded-md flex items-center justify-center bg-base-300 px-6 py-3 font-medium"
             number={phone}
             message={serviceData}
@@ -290,7 +290,7 @@ function page() {
               src={`https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png`}
             />
             Continue With WhatsApp
-          </ReactWhatsapp>
+          </div>
         </div>
       </div>
     </div>

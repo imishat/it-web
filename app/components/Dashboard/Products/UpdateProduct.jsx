@@ -15,11 +15,17 @@ function UpdateProduct() {
   const router = useParams()
   const {updateId} = router
   const [loading, setLoading] = useState(false);
-  
-  const [imageUrls, setImageUrls] = useState([]);
+    // get single service
+    const [service,setService] = useState({})
 
-  // get single service
-  const [service,setService] = useState({})
+
+
+const images = service?.servicePicture? JSON.parse(service?.servicePicture):[]
+
+
+  const [imageUrls, setImageUrls] = useState(images);
+
+
   useEffect(()=>{
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-service/${updateId}`)
     .then(res=>{
@@ -89,8 +95,19 @@ const [btn,setBtn] = useState('Update')
     console.log(serviceData);
   };
 
-  const description = service?.descripton
-  console.log(value)
+  
+  const handleOnChange= (e) =>{
+  try {
+    return handleTextareaClick(e.target.value)
+  } catch (error) {
+    console.error(error);
+  }
+  }
+  // image data
+  const imageData = imageUrls?.length?imageUrls :images
+
+  // // remove image 
+  // const filteredImage = imageData.filter(image=>image)
   return (
     <div>
       <div>
@@ -109,7 +126,7 @@ const [btn,setBtn] = useState('Update')
             />
             {/* description */}
             <p className="px-4 w-full py-2 bg-base-200 mt-3">Description</p>
-            <ReactQuill theme="snow" value={service?.descripton} onChange={e=>handleTextareaClick (e.target.value ? e.target.value:e)}  />
+            <ReactQuill theme="snow" value={service?.descripton} onChange={e=>handleOnChange(e)}  />
           </div>
           <div className="md:w-96 flex flex-col">
             {/* categories */}
@@ -135,9 +152,9 @@ const [btn,setBtn] = useState('Update')
             {/* Images */}
             <div className="mt-5">
               <p className="px-4 w-full py-2 bg-base-200 mt-3">Select Images</p>
-              { imageUrls?.length ?
+              { imageUrls?.length || images?.length ?
          <div className="flex flex-wrap">
-         {  imageUrls?.map((image,i)=>{
+         {  imageData?.map((image,i)=>{
             return <img key={i} className="w-1/2 h-24 object-cover" src={image?.url} alt="" />
           })}
          </div>:
