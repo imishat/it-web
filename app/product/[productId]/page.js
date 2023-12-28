@@ -1,6 +1,6 @@
 import ProductDescription from "../../../app/components/Products/ProductDescription";
 
-function page() {
+function Page() {
     return (
         <div>
             <ProductDescription />
@@ -8,4 +8,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;

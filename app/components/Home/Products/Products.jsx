@@ -142,7 +142,7 @@ function Products() {
   // count
   const pages = Math.ceil(count / limit);
   return (
-    <div className="container mx-auto">
+    <div className="container  mx-auto">
       <div className="mt-12 mb-2 bg-base-300 px-2 py-2">
         <h2 className="text-2xl font-bold uppercase">Products</h2>
       </div>

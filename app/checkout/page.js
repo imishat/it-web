@@ -3,15 +3,15 @@ import { MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { FaRegUser } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-// import ReactWhatsapp from "react-whatsapp";
+import { useSelector } from "react-redux";
+import ReactWhatsapp from "react-whatsapp";
 // import ReactWhatsapp from "react-whatsapp";
 
-function page() {
-  //dispatch
-  const dispatch = useDispatch();
-  // cart data
+function Page() {
+ // hook form
+ const {handleSubmit} = useForm()
   // const [cartData,setCartData]
   const cart = useSelector((state) => state.cart);
   // total price
@@ -33,6 +33,13 @@ function page() {
     Product: ${item?.title} | price: ${item?.price}$.`
   )} 
   `;
+
+
+  // handle 
+  const submitData = () =>{
+    console.log('')
+  }
+ 
 
   // phone number
   const phone = "+880 1739-452511";
@@ -150,13 +157,14 @@ function page() {
           </div>
 
           <p class="mt-8 text-lg font-medium">Methods</p>
-          <form class="mt-5 grid gap-6">
+          <form  class="mt-5 grid gap-6">
             {/* Delivery */}
             <div class="relative">
               <input
                 class="peer hidden"
                 id="radio_1"
                 type="radio"
+                required
                 name="radio"
                 checked
               />
@@ -191,7 +199,7 @@ function page() {
       </div> */}
           </form>
         </div>
-        <div class="mt-10 bg-base-200 px-4 pt-8 lg:mt-0">
+        <form onSubmit={handleSubmit(submitData)} handle class="mt-10 bg-base-200 px-4 pt-8 lg:mt-0">
           <p class="text-xl font-medium">Your Details</p>
           <p class="text-gray-400">
             Complete your order by providing your details.
@@ -205,6 +213,7 @@ function page() {
               <input
                 onChange={(e) => setName(e.target.value)}
                 type="text"
+                required
                 id="name"
                 name="name"
                 class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
@@ -220,6 +229,7 @@ function page() {
             </label>
             <div class="relative">
               <input
+                required
                 onChange={(e) => setEmail(e.target.value)}
                 type="text"
                 id="email"
@@ -253,6 +263,7 @@ function page() {
                 onChange={(e) => setAddress(e.target.value)}
                 type="text"
                 id="address"
+                required
                 name="address"
                 class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                 placeholder="2209 W Main St, Artesia, New York"
@@ -278,7 +289,8 @@ function page() {
               <p class="text-2xl font-semibold">${totalPrice}</p>
             </div>
           </div>
-          <div
+          <button className="w-full" disabled={!name?.length || !email?.length || !address?.length}>
+          <ReactWhatsapp
             className="mt-4 mb-8 w-full rounded-md flex items-center justify-center bg-base-300 px-6 py-3 font-medium"
             number={phone}
             message={serviceData}
@@ -290,14 +302,16 @@ function page() {
               src={`https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png`}
             />
             Continue With WhatsApp
-          </div>
-        </div>
+          </ReactWhatsapp>
+          </button>
+         
+        </form>
       </div>
     </div>
   );
 }
 
-export default page;
+export default Page;
 {
   /* render(<App />, document.getElementById('root')); */
 }

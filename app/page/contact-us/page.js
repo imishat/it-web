@@ -1,4 +1,4 @@
-function page() {
+function Page() {
     return (
         <div className="space-y-4 ">
               <h2 className="text-5xl font-bold flex justify-center mt-6">Contact us</h2>
@@ -31,4 +31,4 @@ IT Platform BD
     );
 }
 
-export default page;
+export default Page;

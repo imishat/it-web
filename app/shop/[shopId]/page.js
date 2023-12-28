@@ -5,10 +5,10 @@ export const metadata = {
     description: 'Hello Shop',
   }
 
-function page() {
+function Page() {
     return (
             <Shop />
     );
 }
 
-export default page;
+export default Page;

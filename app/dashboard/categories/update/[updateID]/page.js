@@ -2,7 +2,7 @@
 import UpdateCategory from "../../../../components/Dashboard/Categories/UpdateCategory";
 import Layout from "../../../../components/Layout/Layout";
 
-function page() {
+function Page() {
 
     return (
         <Layout>
@@ -11,4 +11,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;

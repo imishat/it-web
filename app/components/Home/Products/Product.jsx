@@ -30,43 +30,43 @@ function Product({ product }) {
 
   //
   return (
-    <div className="h-fit border bg-base-200 w-full relative">
-      <button
-        onMouseLeave={() => setShowNavigation(false)}
-        onMouseEnter={() => setShowNavigation(true)}
-        hidden={!showNavigation}
-        className={`absolute right-1 duration-200 top-1 ${
-          isAdded ? "bg-teal-500 text-white" : "bg-base-100"
-        } rounded px-2 py-1 z-50`}
-      >
-        {isAdded ? (
-          <BsCartCheck
-            onClick={() => dispatch(removeFromCart(product?.id))}
-            size={28}
-          />
-        ) : (
-          <BsCart onClick={() => handleAddToCart()} size={28} />
-        )}
-      </button>
-      <div
-        className="w-full"
-        onMouseLeave={() => setShowNavigation(false)}
-        onMouseEnter={() => setShowNavigation(true)}
-      >
-        <ProductSlider images={images} showNavigation={showNavigation} />
-        <div className="py-2 px-1">
-          <Link
-            className="text-sm font-bold px-1"
-            href={`/product/${product?.id}`}
-          >
-            {product?.title}
-          </Link>
-          <h1 className="flex justify-end text-orange-500 font-bold">
-            Price: <span className="text-xl">${product?.price}</span>
-          </h1>
+    <Link className="inline-block h-[230] border bg-base-200 w-full relative" href={`/product/${product?.id}`}>
+      <div className="">
+        <button
+          onMouseLeave={() => setShowNavigation(false)}
+          onMouseEnter={() => setShowNavigation(true)}
+          hidden={!showNavigation}
+          className={`absolute right-1 duration-200 top-1 ${
+            isAdded ? "bg-teal-500 text-white" : "bg-base-100"
+          } rounded px-2 py-1 z-50`}
+        >
+          {isAdded ? (
+            <BsCartCheck
+              onClick={() => dispatch(removeFromCart(product?.id))}
+              size={28}
+            />
+          ) : (
+            <BsCart onClick={() => handleAddToCart()} size={28} />
+          )}
+        </button>
+        <div
+          className="w-full"
+          onMouseLeave={() => setShowNavigation(false)}
+          onMouseEnter={() => setShowNavigation(true)}
+        >
+          <ProductSlider images={images} showNavigation={showNavigation} />
+          <div className="py-2 px-1">
+            <h2 className="text-sm py-0 leading-2 font-bold px-1">
+              {product?.title}
+            </h2>
+
+            <h1 className="flex justify-end text-orange-500 font-bold">
+              Price: <span className="text-xl">${product?.price}</span>
+            </h1>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

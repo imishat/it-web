@@ -1,6 +1,6 @@
 import Shop from "../components/Shop/Shop";
 
-function page() {
+function Page() {
   return (
     <div>
       <Shop />
@@ -8,4 +8,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

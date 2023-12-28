@@ -1,4 +1,4 @@
-function page() {
+function Page() {
     return (
         <div className="space-y-6 ">
             <h2 className="text-5xl font-bold flex justify-center mt-6">Terms and Conditions</h2>
@@ -35,4 +35,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;

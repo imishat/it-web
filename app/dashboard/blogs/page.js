@@ -1,7 +1,7 @@
 import Blogs from "../../../app/components/Dashboard/Blogs/Blogs";
 import Layout from "../../../app/components/Layout/Layout";
 
-function page() {
+function Page() {
     return (
         <Layout>
             <Blogs />
@@ -9,4 +9,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;

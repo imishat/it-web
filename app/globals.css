@@ -70,20 +70,32 @@ pre.ql-syntax {
 /* ========== swiper ===== */
 .swiper-button-prev:after {
   font-size: 12px !important;
+  transition: all;
+  transition-duration: 300ms;
+  transition-delay: 300ms;
 }
 .swiper-button-next:after {
   font-size: 12px !important;
+  transition: all;
+  transition-duration: 300ms;
+  transition-delay: 300ms;
 }
 .swiper-button-prev {
   left: 0 !important;
   background-color: white;
   border-top-right-radius: 20px;
+  transition: all;
+  transition-duration: 300ms;
+  transition-delay: 300ms;
   height: 32px !important;
   border-bottom-right-radius: 20px;
 }
 .swiper-button-next {
   right: 0 !important;
   background-color: white;
+  transition: all;
+  transition-duration: 300ms;
+  transition-delay: 300ms;
   height: 32px !important;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;

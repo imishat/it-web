@@ -1,7 +1,7 @@
 import Blogs from "../components/Blogs/Blogs";
 
 
-function page() {
+function Page() {
     return (
         <div>
             <Blogs />
@@ -9,4 +9,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;

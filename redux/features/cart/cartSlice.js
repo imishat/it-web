@@ -1,3 +1,5 @@
+import toast from "react-hot-toast";
+
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = [];
@@ -15,6 +17,8 @@ const cartSlice = createSlice({
       // set data in local
       typeof window!== 'undefined' && localStorage.setItem('cart',JSON.stringify([...cartData,data]))
        // state 
+       
+      toast.success('Added in cart')
       return (state = [...state, data]);
     },
     removeFromCart: (state, action) => {
@@ -26,6 +30,7 @@ const cartSlice = createSlice({
       const filteredData = cartData.filter(cart=>cart.id!==id)
       // set filter data in local
       typeof window!== 'undefined' && localStorage.setItem('cart',JSON.stringify(filteredData))
+      toast.error('Remove From Cart')
       // state 
        return state = state.filter(cart=>cart.id!==action.payload)
     },

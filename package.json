@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint"
   },
@@ -20,6 +20,8 @@
     "axios": "^1.6.2",
     "daisyui": "^4.4.19",
     "fetcher": "^0.3.0",
+    "react-hot-toast": "^2.4.1",
+    "react-whatsapp": "^0.3.0",
     "html-react-parser": "^5.0.10",
     "lucide-react": "^0.295.0",
     "moment": "^2.29.4",
