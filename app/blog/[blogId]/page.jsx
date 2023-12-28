@@ -1,6 +1,6 @@
 import Blog from "../../components/Blogs/Blog";
 
-async function page() { 
+async function Page() { 
     return (
         <div>
             <Blog />
@@ -8,4 +8,4 @@ async function page() {
     );
 }
 
-export default page;
+export default Page;

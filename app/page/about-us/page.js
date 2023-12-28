@@ -1,4 +1,4 @@
-function page() {
+function Page() {
     return (
         <div className="text-sm space-y-4">
              <h2 className="text-5xl font-bold flex justify-center mt-6">About us</h2>
@@ -28,4 +28,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;

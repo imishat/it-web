@@ -1,7 +1,7 @@
 import Dashboard from "../../app/components/Dashboard/Dashboard";
 import Layout from "../../app/components/Layout/Layout";
 
-function page() {
+function Page() {
     return (
         <Layout>
             <Dashboard />
@@ -9,4 +9,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;

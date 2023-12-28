@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../../../redux/features/cart/cartSlice";
 import Skeleton from "../Loading/Skeleton";
+import Related from '../Related/Related';
 import ImageSlider from "./ImageSlider";
 import Reviews from "./Reviews";
 
@@ -34,6 +35,8 @@ function ProductDescription() {
     })
    }
   },[productId])
+
+  console.log(product,'product')
   
   // dispatch
   const dispatch = useDispatch()
@@ -136,7 +139,10 @@ function ProductDescription() {
           <span className="title-font font-medium text-2xl text-gray-900">${product?.price}</span>
           {
             isAdded ?
-            <button className="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded" onClick={()=>dispatch(removeFromCart(product?.id))}>
+            <button className="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded" onClick={()=>{
+              dispatch(removeFromCart(product?.id))
+             
+            }}>
             Added to cart
           </button>
             :
@@ -154,7 +160,12 @@ function ProductDescription() {
     }
   
   </div>
+  <div className="space-y-5">
   <Reviews product={product} />
+   {/* related */}
+  <Related service={product} />
+  </div>
+ 
 </section>
     );
 }

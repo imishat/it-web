@@ -70,8 +70,10 @@ const filteredData = products?.filter(item=>item?.price <= parseInt(price))
 
 
   return (
-    <div className="container mx-auto h-max mb-12">
-      <div className="h-20 mb-4 px-5 md:px-2 bg-base-300"></div>
+    <div className="container  mx-auto h-screen mb-12">
+      <div className="h-20 mb-4 px-5 md:px-2 bg-base-300 flex text-lg items-center">
+      <h2>{search ? `Searching: ${search}`:category?.id ? category?.name : "All Services"}</h2>
+      </div>
       <div className="md:flex gap-2">
         {/* Sidebar */}
         <Sidebar price={price} setPrice={setPrice} />

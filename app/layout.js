@@ -1,6 +1,7 @@
 "use client";
-import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
 import Footer from "./components/Footer/Footer";
@@ -22,16 +23,17 @@ export default function RootLayout({ children }) {
         <meta name="description" content="Description" />
       </head>
       <body className={`${inter.className} `}>
-      <Provider store={store}>
-      <ProgressBar
-        height="4px"
-        color="#E77C01"
-        options={{ showSpinner: false }}
-        shallowRouting
-      />
-         <Navbar />
-        {children}
-        <Footer />
+        <Provider store={store}>
+          <Toaster position="top-center" reverseOrder={false} />
+          <ProgressBar
+            height="4px"
+            color="#E77C01"
+            options={{ showSpinner: false }}
+            shallowRouting
+          />
+          <Navbar />
+          {children}
+          <Footer />
         </Provider>
       </body>
     </html>

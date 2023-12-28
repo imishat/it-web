@@ -1,7 +1,7 @@
 import CreateProduct from "../../../../app/components/Dashboard/Products/CreateProduct";
 import Layout from "../../../../app/components/Layout/Layout";
 
-function page() {
+function Page() {
     return (
         <Layout>
             <CreateProduct />
@@ -9,4 +9,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;

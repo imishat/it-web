@@ -1,7 +1,7 @@
 import CreateCategory from "../../../../app/components/Dashboard/Categories/CreateCategory";
 import Layout from "../../../../app/components/Layout/Layout";
 
-function page() {
+function Page() {
     return (
         <Layout>
             <CreateCategory />
@@ -9,4 +9,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;

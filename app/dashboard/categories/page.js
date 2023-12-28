@@ -1,7 +1,7 @@
 import Categories from "../../../app/components/Dashboard/Categories/Categories";
 import Layout from "../../../app/components/Layout/Layout";
 
-function page() {
+function Page() {
     return (
         <Layout>
             <Categories />
@@ -9,4 +9,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;

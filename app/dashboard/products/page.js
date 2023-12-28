@@ -3,10 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Products from "../../../app/components/Dashboard/Products/Products";
 import Layout from "../../../app/components/Layout/Layout";
-
-function page() {
-   // page 
-  const [page,setPage] = useState(1)
+const Page = () => {
+    // page 
+    const [page,setPage] = useState(1)
     // delete btn
     const [deleteBtn,setDeleteBtn] = useState('Confirm')
     // loading
@@ -42,4 +41,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;

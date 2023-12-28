@@ -4,7 +4,7 @@ import UpdateProduct from "../../../../components/Dashboard/Products/UpdateProdu
 import Layout from "../../../../components/Layout/Layout";
 
 
-const page=async()=> {
+const Page=async()=> {
   
 
     return (
@@ -14,4 +14,4 @@ const page=async()=> {
     );
 }
 
-export default page;
+export default Page;

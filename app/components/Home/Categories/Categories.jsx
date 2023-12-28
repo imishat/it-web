@@ -1,51 +1,18 @@
 "use client";
+import axios from "axios";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 function Categories() {
-    const categories = [
-        {
-            id:1,
-            image:'https://cdn.kwork.com/files/category/collage/categories_first_level/en/t3/seo_guest.webp',
-            title:'Alex, Front-end Developer',
-            stars:4
-        },
-        {
-            id:2,
-            image:'https://cdn.kwork.com/files/category/collage/categories_first_level/en/t3/reklama-pr_guest.webp',
-            title:'Alex, Front-end Developer',
-            stars:5
-        },
-        {
-            id:3,
-            image:'https://cdn.kwork.com/files/category/collage/categories_first_level/en/t3/programming_guest.webp',
-            title:'Alex, Front-end Developer',
-            stars:5
-        },
-        {
-            id:4,
-            image:'https://cdn.kwork.com/files/category/collage/categories_first_level/en/t3/design_guest.webp?ver=1615534203',
-            title:'Alex, Front-end Developer',
-            stars:5
-        },
-        {
-            id:5,
-            image:'https://cdn.kwork.com/files/category/collage/categories_first_level/en/t3/writing-translations_guest.webp?ver=1615534286',
-            title:'Alex, Front-end Developer',
-            stars:5
-        },
-        {
-            id:6,
-            image:'https://cdn.kwork.com/files/category/collage/categories_first_level/en/t3/business_guest.webp?ver=1615534340',
-            title:'Alex, Front-end Developer',
-            stars:5
-        },
-        {
-            id:7,
-            image:'https://cdn.kwork.com/files/category/collage/categories_first_level/en/t3/audio-video_guest.webp?ver=1615534330',
-            title:'Alex, Front-end Developer',
-            stars:5
-        }
-    ]
+    const [categories,setCategories] = useState([])
+
+    useEffect(()=>{
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/all-category`)
+        .then(res=>{
+            setCategories(res.data?.data?.result)
+        })
+    },[])
     // Swiper breakpoints
     const breakpoints = {
         // when window width is >= 320px
@@ -96,9 +63,12 @@ function Categories() {
                     {
                         categories?.map((category,i)=>{
                             return <SwiperSlide key={i} className="border !h-auto sm:!h-32">
-                                <div className="flex h-full justify-center items-center">
-                                <img className="w-full object-cover h-full" src={category?.image} alt="" />
+                                <Link href={`/shop/${category?.id}`} className="flex relative h-full justify-center items-center">
+                                <img className="w-full object-cover h-full" src={category?.picture} alt="" />
+                                <div className="absolute top-0 w-full h-full left-0 px-2 py-1 font-bold ">
+                                    <p className="absolute left-0 bottom-1 backdrop-blur-md backdrop-brightness-110 rounded-full px-2 py-0 bg-blue-50">{category?.name}</p>
                                 </div>
+                                </Link>
                             </SwiperSlide>
                         })
                     }
