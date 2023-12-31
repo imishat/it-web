@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CiCircleList, CiGrid41, CiMenuFries, CiShop } from "react-icons/ci";
+import { CiCircleList, CiGrid41, CiMenuFries, CiShop, CiStar } from "react-icons/ci";
 import { LiaDoorOpenSolid } from "react-icons/lia";
 
 
@@ -63,16 +63,16 @@ function Layout({children}) {
                     <span>Categories</span>
                   </Link>
                 </li>
-                {/* <li className={`${router === '/dashboard/wish' ? 'bg-base-300':''}`}>
-                  <a
+                <li className={`${router === '/dashboard/reviews' ? 'bg-base-300':''}`}>
+                  <Link
                     rel="noopener noreferrer"
-                    href="#"
+                    href="/dashboard/reviews"
                     className="flex items-center p-2 space-x-3 rounded-md"
                   >
-                   <CiHeart size={22} />
-                    <span>Wishlist</span>
-                  </a>
-                </li> */}
+                   <CiStar size={22} />
+                    <span>Reviews</span>
+                  </Link>
+                </li>
               </ul>
               <ul className="pt-4 pb-2 space-y-1 text-sm">
                 {/* <li className={`${router === '/dashboard/settings' ? 'bg-base-300':''}`}>

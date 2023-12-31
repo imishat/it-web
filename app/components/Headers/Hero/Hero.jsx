@@ -5,8 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
-import Partners from "../Partners/Partners";
-import HeroSlider from "./HeroSlider";
 // Import Swiper React components
 
 function Hero() {
@@ -108,14 +106,13 @@ function Hero() {
           <div className="w-1/2 max-w-lg relative">
           <div className="absolute bottom-0">
             <div className="w-96">
-              <HeroSlider />
+              {/* <HeroSlider /> */}
             </div>
           </div>
         </div>
         </div>
        
       </div>
-      <Partners />
     </div>
   );
 }

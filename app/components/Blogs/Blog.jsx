@@ -5,7 +5,6 @@ import moment from "moment";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Categories from "./Categories/Categories";
 
 function Blog() {
   // params
@@ -49,15 +48,15 @@ function Blog() {
           </div>
         </div>
       ) : (
-        <div className="flex w-full flex-col max-w-4xl   rounded">
+        <div className="flex w-full flex-col mx-auto max-w-4xl   rounded">
           <Image
             height={200}
             width={400}
-            src="https://source.unsplash.com/random/480x360"
+            src={blog?.Picture}
             alt=""
-            className="w-full h-60 object-cover sm:h-96 dark:bg-gray-500"
+            className="w-full h-60 border shadow-xl rounded-md object-cover sm:h-96 bg-base-300"
           />
-          <div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md bg-base-200">
+          <div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-3xl sm:px-10 sm:mx-12 lg:rounded-md bg-base-200">
             <div className="space-y-2">
               <p
                 rel="noopener noreferrer"
@@ -65,18 +64,18 @@ function Blog() {
               >
                 {blog?.title}
               </p>
-              <p className="text-xs dark:text-gray-400">
+              <p className="text-xs">
                 {moment(blog?.createdAt).fromNow()}
               </p>
             </div>
-            <div className="dark:text-gray-100 flex flex-col">
+            <div className="flex flex-col">
               {blog?.id ? <p>{parse(blog?.descripton)}</p> : ""}
             </div>
           </div>
         </div>
       )}
       {/* Categories */}
-      <Categories />
+      {/* <Categories /> */}
     </div>
   );
 }

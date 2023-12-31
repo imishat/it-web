@@ -44,7 +44,7 @@ function Shop() {
   const pages = Math.ceil(count / limit);
 
   // range slider
-const [price, setPrice] = useState('500');
+const [price, setPrice] = useState('1000');
 
 const filteredData = products?.filter(item=>item?.price <= parseInt(price))
 
