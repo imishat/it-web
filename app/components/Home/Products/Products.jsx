@@ -114,7 +114,7 @@ function Products() {
   // get all products
   const [products, setProducts] = useState([]);
   // limit
-  const limit = 8;
+  const limit = 40;
 
   // page
   const [page, setPage] = useState(1);
@@ -144,7 +144,7 @@ function Products() {
   return (
     <div className="container  mx-auto">
       <div className="mt-12 mb-2 bg-base-300 px-2 py-2">
-        <h2 className="text-2xl font-bold uppercase">Products</h2>
+        <h2 className="text-2xl font-bold uppercase">Our Services</h2>
       </div>
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 w-full gap-4">

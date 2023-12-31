@@ -35,6 +35,8 @@ function UpdateProduct() {
       });
   }, [updateId]);
 
+  console.log(service,'service')
+
   // selected images
   const [selectedImage, setSelectedImage] = useState([]);
 
@@ -77,6 +79,7 @@ function UpdateProduct() {
     const serviceData = {
       title: data?.title || service?.title,
       descripton: value || service?.descripton,
+      subDescription:data?.subDescription,
       servicePicture: imageUrls?.length
         ? JSON.stringify(imageUrls)
         : service?.servicePicture,
@@ -213,6 +216,11 @@ function UpdateProduct() {
                   ""
                 )}
               </div>
+            </div>
+            <div>
+                {/* subDescription */}
+                <h2 className="px-4 w-full py-2 bg-base-200">Short Description</h2>
+            <textarea defaultValue={service?.subDescription} placeholder="Short Description"  {...register("subDescription", { required: true })} className="w-full h-44 px-2 py-1 border border-gray-300"></textarea>
             </div>
             {/* Submit */}
             <button className="px-4 mt-6 py-2 bg-green-500 hover:bg-gray-400 text-white">

@@ -37,7 +37,7 @@ function SubNavbar() {
       ) : (
         <ul className="flex text-sm items-center justify-between">
           {categories?.length ? (
-            categories?.map((category, i) => {
+            categories?.slice(0,6)?.map((category, i) => {
               return (
                 <li
                   key={i}

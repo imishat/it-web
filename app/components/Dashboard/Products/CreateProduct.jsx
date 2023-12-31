@@ -63,6 +63,7 @@ function CreateProduct() {
     const serviceData = {
       title: data?.title,
       descripton: value,
+      subDescription:data?.subDescription,
       price: parseInt(data?.price),
       servicePicture: JSON.stringify(imageUrls),
       categoryId: parseInt(data?.categoryId),
@@ -97,8 +98,10 @@ function CreateProduct() {
             />
             {/* description */}
             <p className="px-4 w-full py-2 bg-base-200 mt-3">Description</p>
-            <ReactQuill theme="snow" value={value} onChange={setValue} />
+            <ReactQuill placeholder="Description" theme="snow" value={value} onChange={setValue} />
+          
           </div>
+
           <div className="md:w-96 flex flex-col">
             {/* categories */}
             <div className="w-full">
@@ -157,6 +160,11 @@ function CreateProduct() {
                 selectedImage?.length ?  <span onClick={()=>handleUpload()} className="hover:bg-orange-500 flex justify-center cursor-pointer bg-orange-400 duration-300 w-full py-2 rounded text-white">{loading?'Uploading...':"Upload Images"}</span>:''
                }
               </div>
+            </div>
+            <div>
+                {/* subDescription */}
+                <h2 className="px-4 w-full py-2 bg-base-200">Short Description</h2>
+            <textarea placeholder="Short Description"   {...register("subDescription", { required: true })} className="w-full h-44 px-2 py-1 border border-gray-300"></textarea>
             </div>
             {/* Submit */}
             <button disabled={!imageUrls?.length} className="px-4 mt-6 disabled:bg-gray-300 py-2 hover:bg-orange-500 bg-orange-400 text-white">

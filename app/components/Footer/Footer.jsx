@@ -13,7 +13,6 @@ function Footer() {
         <Link href={`/page/contact-us`} className="inline-block w-full py-1.5">
           Contact us
         </Link>
-        <a className="link link-hover">Press kit</a>
       </nav>
       <nav>
         <div className="grid grid-flow-col gap-4">
@@ -23,7 +22,7 @@ function Footer() {
         </div>
       </nav>
       <aside>
-        <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+        <p>Copyright © {new Date().getFullYear()} - All right reserved by IT Platform BD</p>
       </aside>
     </footer>
   );
