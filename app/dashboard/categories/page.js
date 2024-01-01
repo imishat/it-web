@@ -1,11 +1,14 @@
 import Categories from "../../../app/components/Dashboard/Categories/Categories";
 import Layout from "../../../app/components/Layout/Layout";
+import PrivateRoutes from "../../../app/components/Routes/PrivateRoutes";
 
 function Page() {
     return (
-        <Layout>
+       <PrivateRoutes>
+         <Layout>
             <Categories />
         </Layout>
+       </PrivateRoutes>
     );
 }
 

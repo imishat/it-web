@@ -1,12 +1,25 @@
 'use client'
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useContext } from "react";
 import { CiCircleList, CiGrid41, CiMenuFries, CiShop, CiStar } from "react-icons/ci";
 import { LiaDoorOpenSolid } from "react-icons/lia";
+import { AuthContext } from "../../../context/ContextProvider";
 
 
 function Layout({children}) {
     const router = usePathname()
+
+    // push router
+    const routerPush = useRouter()
+    // context
+    const {logOut} = useContext(AuthContext)
+
+    const handleLogOut = () =>{
+      logOut().then(res=>{
+        routerPush.push('/')
+      })
+    }
     return (
         <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -86,14 +99,14 @@ function Layout({children}) {
                   </a>
                 </li> */}
                 <li className={``}>
-                  <a
+                  <button
                     rel="noopener noreferrer"
-                    href="#"
+                   onClick={()=>handleLogOut()}
                     className="flex items-center p-2 space-x-3 rounded-md"
                   >
                    <LiaDoorOpenSolid size={22} />
                     <span>Logout</span>
-                  </a>
+                  </button>
                 </li>
               </ul>
             </div>

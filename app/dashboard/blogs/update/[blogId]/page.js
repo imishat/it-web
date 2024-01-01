@@ -1,11 +1,14 @@
 import UpdateBlog from '../../../../components/Dashboard/Blogs/UpdateBlog';
 import Layout from '../../../../components/Layout/Layout';
+import PrivateRoutes from "../../../../components/Routes/PrivateRoutes";
 
 function Page() {
     return (
-        <Layout>
+        <PrivateRoutes>
+            <Layout>
             <UpdateBlog />
         </Layout>
+        </PrivateRoutes>
     );
 }
 

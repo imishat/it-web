@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Products from "../../../app/components/Dashboard/Products/Products";
 import Layout from "../../../app/components/Layout/Layout";
+import PrivateRoutes from "../../../app/components/Routes/PrivateRoutes";
 const Page = () => {
     // page 
     const [page,setPage] = useState(1)
@@ -35,9 +36,11 @@ const Page = () => {
   }
 
       return (
-        <Layout>
+        <PrivateRoutes>
+          <Layout>
             <Products loading={loading} tableData={tableData} setPage={setPage} setDeleteBtn={setDeleteBtn} deleteBtn={deleteBtn} page={page} count={count} />
         </Layout>
+        </PrivateRoutes>
     );
 }
 

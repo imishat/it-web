@@ -119,7 +119,7 @@ function Products({tableData,setPage,page,deleteBtn,setDeleteBtn,count,loading})
           </thead>
           <tbody>
             { products?.map((table, i) => {
-              console.log(table,'table?.servicePicture')
+              
               return (
                 <tr key={i}>
                   <td className="py-3 px-5 border-b border-blue-gray-50">

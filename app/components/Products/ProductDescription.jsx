@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../../../redux/features/cart/cartSlice";
+import MainLayout from "../Layout/MainLayout";
 import Skeleton from "../Loading/Skeleton";
 import Related from "../Related/Related";
 import ImageSlider from "./ImageSlider";
@@ -123,6 +124,7 @@ function ProductDescription() {
     ));
 
   return (
+    <MainLayout title={product?.title} description={product?.subDescription}>
     <section className="text-gray-700 container mx-auto body-font overflow-hidden  bg-white">
       <div className="container  md:pt-24 max-h-fit  mx-auto">
         {loading ? (
@@ -247,6 +249,7 @@ function ProductDescription() {
         <Related service={product} />
       </div>
     </section>
+    </MainLayout>
   );
 }
 

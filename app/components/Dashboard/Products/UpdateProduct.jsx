@@ -101,18 +101,21 @@ function UpdateProduct() {
         }
       })
       .catch((err) => setBtn("Try Again"));
-    console.log(serviceData);
   };
 
   // set data in value
   useEffect(()=>{
-    setValue(service?.descripton ? (service?.descripton):'<p>Hello World!</p>')
+    setValue(service?.descripton ? (service?.descripton):'<p>Reload Again!</p>')
   },[!service?.id])
   // image data
-  const imageData = imageUrls?.length ? imageUrls : images;
+  let imageData = imageUrls?.length ? imageUrls : images;
 
-  // // remove image
-  // const filteredImage = imageData.filter(image=>image)
+  const [filterCondition, setFilterCondition] = useState(imageData);
+
+  useEffect(()=>{
+    setFilterCondition(imageData)
+  },[!imageData?.length,imageUrls?.length, images?.length])
+
   return (
     <div>
       <div>
@@ -136,7 +139,7 @@ function UpdateProduct() {
               value={value}
               onChange={(e) => setValue(e)}
             />
-          </div>
+          </div> 
           <div className="md:w-96 flex flex-col">
             {/* categories */}
             <div className="w-full">
@@ -175,16 +178,19 @@ function UpdateProduct() {
             {/* Images */}
             <div className="mt-5">
               <p className="px-4 w-full py-2 bg-base-200 mt-3">Select Images</p>
-              {imageUrls?.length || images?.length ? (
+              {imageUrls?.length || images?.length && filterCondition?.length ? (
                 <div className="flex flex-wrap">
-                  {imageData?.map((image, i) => {
+                  {filterCondition?.map((image, i) => {
                     return (
-                      <img
-                        key={i}
-                        className="w-1/2 h-24 object-cover"
+                     <div  key={i} className="relative w-1/2 border">
+                       <img
+                       
+                        className="w-full h-24 object-contain"
                         src={image?.url}
                         alt=""
                       />
+                      <span onClick={()=>setFilterCondition(filterCondition?.filter(img=>img?.publicId!==image?.publicId))} className="px-3 py-1 bg-rose-200 cursor-pointer absolute top-1 left-1 rounded-full text-rose-600">X</span>
+                     </div>
                     );
                   })}
                 </div>

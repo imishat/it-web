@@ -1,8 +1,10 @@
-"use client";
+'use client';
+
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
+import ContextProvider from '../context/ContextProvider';
 import { store } from "../redux/store";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Headers/Navbar";
@@ -16,24 +18,26 @@ const inter = Inter({ subsets: ["latin"] });
 // }
 
 export default function RootLayout({ children }) {
+ 
   return (
     <html id="html" lang="en" className="container mx-auto">
       <head>
         <title>IT Platform BD || Home</title>
-        <meta name="description" content="Description" />
       </head>
       <body className={`${inter.className} `}>
         <Provider store={store}>
+          <ContextProvider>
           <Toaster position="top-center" reverseOrder={false} />
           <ProgressBar
             height="4px"
             color="#E77C01"
             options={{ showSpinner: false }}
             shallowRouting
-          />
+            />
           <Navbar />
           {children}
           <Footer />
+            </ContextProvider>
         </Provider>
       </body>
     </html>
