@@ -6,14 +6,18 @@ import { IoMdLogIn, IoMdMenu } from "react-icons/io";
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BsCart2 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
+import { AuthContext } from "../../../context/ContextProvider";
 import { showModal } from "../../../redux/features/modal/modalSlice";
 import CartSidebar from "../Modals/CartSidebar";
 import LoginModal from "../Modals/LoginModal";
 
 function Navbar() {
+
+  const {user} = useContext(AuthContext)
+
   
   const cart = useSelector((state) => state.cart);
   // router
@@ -226,12 +230,18 @@ function Navbar() {
           <Link href={"/blogs"} className="px-4 text-sm hidden lg:block py-2">
             Blogs
           </Link>
-          <button
+          {
+            user?.email ? <Link className="btn hidden !min-h-[40px] h-[40px] lg:flex rounded bg-[#E77C01] hover:bg-[#E77C01] text-white px-6" href={`/dashboard`}>
+            Dashboard</Link>
+            :
+            <button
             onClick={() => dispatch(showModal(!modal))}
             className="btn hidden !min-h-[40px] h-[40px] lg:flex rounded bg-[#E77C01] hover:bg-[#E77C01] text-white px-6"
           >
             Sign In
           </button>
+          }
+        
 
           <button
             onClick={() => setShowSidebar(!showSidebar)}

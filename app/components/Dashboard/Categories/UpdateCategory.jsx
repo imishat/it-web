@@ -24,7 +24,6 @@ function UpdateCategory() {
       })
      }
     },[updateID])
-    console.log(category,'category')
     
       const [loading, setLoading ] = useState(false);
       const [ url, setUrl ] = useState(category?.picture);
@@ -49,13 +48,13 @@ function UpdateCategory() {
     
       // update
       const handleUpdateCategory = (data) =>{
-        console.log(data)
+        // console.log(data)
         setBtn('Updating...')
         const updateData = {
           name:data?.name||category?.name,
           picture:url||category?.picture,
         }
-        console.log(updateData,'updateData')
+        // console.log(updateData,'updateData')
         axios.put(`${process.env.NEXT_PUBLIC_API_URL}/update-category/${updateID}`,updateData)
         .then(res=>{
           if(res.data.success){

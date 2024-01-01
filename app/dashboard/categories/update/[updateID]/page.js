@@ -1,13 +1,16 @@
 
 import UpdateCategory from "../../../../components/Dashboard/Categories/UpdateCategory";
 import Layout from "../../../../components/Layout/Layout";
+import PrivateRoutes from "../../../../components/Routes/PrivateRoutes";
 
 function Page() {
 
     return (
-        <Layout>
+       <PrivateRoutes>
+         <Layout>
             <UpdateCategory />
         </Layout>
+       </PrivateRoutes>
     );
 }
 

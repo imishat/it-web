@@ -37,7 +37,7 @@ function Page() {
 
   // handle 
   const submitData = () =>{
-    console.log('')
+   
   }
  
 

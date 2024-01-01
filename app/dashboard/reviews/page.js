@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
+import PrivateRoutes from "../../../app/components/Routes/PrivateRoutes";
 import Layout from "../../components/Layout/Layout";
 import Loader from "../../components/Loading/Loading";
 
@@ -40,7 +41,8 @@ function Products() {
   })
 
   return (
-   <Layout>
+   <PrivateRoutes>
+    <Layout>
      <div className="relative flex flex-col bg-clip-border rounded-t-xl bg-base-100 text-gray-700 shadow-md   xl:col-span-2">
       {
         loading? 
@@ -227,6 +229,7 @@ function Products() {
       </div> */}
     </div>
    </Layout>
+   </PrivateRoutes>
   );
 }
 

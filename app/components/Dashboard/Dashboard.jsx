@@ -61,6 +61,17 @@ function Dashboard() {
     .catch(err=>console.error(err))
   },[])
 
+  // reviews
+  const  [reviewCount,setReviewCount] = useState(0)
+  useEffect(()=>{
+    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/get-all-reviews`)
+    .then(res=>{
+        setReviewCount(res.data?.data?.total)
+    })
+    .catch(err=>{
+      console.error(err)})
+  },[])
+
   // data
   const tableData ={
     type:'Services',
@@ -105,7 +116,7 @@ function Dashboard() {
           </div>
           <div className="p-4 text-right">
             <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Reviews</p>
-            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">0</h4>
+            <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">{reviewCount||0}</h4>
           </div>
           {/* <div className="border-t border-blue-gray-50 p-4">
             <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">

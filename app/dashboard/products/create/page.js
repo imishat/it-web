@@ -1,11 +1,14 @@
 import CreateProduct from "../../../../app/components/Dashboard/Products/CreateProduct";
 import Layout from "../../../../app/components/Layout/Layout";
+import PrivateRoutes from "../../../../app/components/Routes/PrivateRoutes";
 
 function Page() {
     return (
-        <Layout>
+       <PrivateRoutes>
+         <Layout>
             <CreateProduct />
         </Layout>
+       </PrivateRoutes>
     );
 }
 
