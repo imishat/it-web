@@ -26,7 +26,6 @@ function Blogs() {
       console.error(err);
     })
   },[deleteBtn==='Deleted'])
-  console.log(blogs)
     const tableData = {
         type:'Blogs',
         data:blogs

@@ -27,11 +27,11 @@ function CreateBlog() {
       setCategories(res.data?.data?.result)
     })
   },[])
-console.log(categories,'categories')
+  
   const [image, setImage] = useState([]);
 
   const onChange = (e) => {
-    // console.log(e.target.value)
+    
     for (const file of e.target.files) {
       const reader = new FileReader();
       reader.readAsDataURL(file);

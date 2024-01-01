@@ -3,7 +3,7 @@
 
 import ImageGallery from "react-image-gallery";
 function ImageSlider({images}) {
-  console.log(images,'image')
+  
     const imageData = []; 
        for(let i = 0; i < images?.length; i++){
        imageData.push ({

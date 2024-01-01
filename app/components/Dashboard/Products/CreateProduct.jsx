@@ -44,7 +44,7 @@ function CreateProduct() {
     for(let i = 0;i<selectedImage?.length;i++){
      const data = await uploadImage(selectedImage[i])
      arr.push(data)
-     console.log(data,'data')
+     
     }
     setImageUrls(arr)
     setLoading(false)
@@ -68,7 +68,7 @@ function CreateProduct() {
       servicePicture: JSON.stringify(imageUrls),
       categoryId: parseInt(data?.categoryId),
     };
-    console.log(serviceData,'service')
+    
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/create-service`,serviceData)
     .then(res=>{
       if(res.data?.success){

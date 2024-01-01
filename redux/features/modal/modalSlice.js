@@ -9,7 +9,7 @@ const modalSlice = createSlice({
     reducers:{
          showModal:(state,action)=>{
              const data = action.payload;
-             console.log(data)
+             
             state.modal=action.payload
          }
     }

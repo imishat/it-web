@@ -11,7 +11,6 @@ const serviceSlice = createSlice({
     reducers:{
          addService:(state,action)=>{
             const data = action.payload;
-            console.log(data)
             // state.push(title,descripton,servicePicture,categoryId)
          }
     }

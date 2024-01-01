@@ -35,7 +35,6 @@ function UpdateProduct() {
       });
   }, [updateId]);
 
-  console.log(service,'service')
 
   // selected images
   const [selectedImage, setSelectedImage] = useState([]);
@@ -47,7 +46,6 @@ function UpdateProduct() {
       for (let i = 0; i < selectedImage?.length; i++) {
         const data = await uploadImage(selectedImage[i]);
         arr.push(data);
-        console.log(data, "data");
       }
       setImageUrls(arr);
       setLoading(false);

@@ -41,7 +41,7 @@ function ProductDescription() {
     }
   }, [productId]);
 
-  console.log(product, "product");
+  
 
   // dispatch
   const dispatch = useDispatch();

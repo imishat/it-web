@@ -17,7 +17,7 @@ import LoginModal from "../Modals/LoginModal";
 function Navbar() {
 
   const {user} = useContext(AuthContext)
-  console.log(user,'context')
+
   
   const cart = useSelector((state) => state.cart);
   // router
