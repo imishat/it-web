@@ -120,3 +120,29 @@ pre.ql-syntax {
   background: rgb(126, 125, 125);
   border-radius: 10px;
 }
+
+/* react quill h tags */
+
+.blog-body h1 {
+  font-size: 34px;
+}
+
+.blog-body h2 {
+  font-size: 30px;
+}
+
+.blog-body h3 {
+  font-size: 24px;
+}
+
+.blog-body h4 {
+  font-size: 20px;
+}
+
+.blog-body h5 {
+  font-size: 18px;
+}
+
+.blog-body h6 {
+  font-size: 16px;
+}

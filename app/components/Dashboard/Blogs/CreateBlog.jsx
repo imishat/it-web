@@ -74,7 +74,7 @@ function CreateBlog() {
     setBtn('Creating...')
     const blogData = {
       title: data?.title,
-      descripton: value,
+      descripton: JSON.stringify(value),
       Picture: imageUrl
     };
     axios.post(`${process.env.NEXT_PUBLIC_API_URL}/create-blog`,blogData)

@@ -62,7 +62,7 @@ function CreateProduct() {
     setBtn('Creating...')
     const serviceData = {
       title: data?.title,
-      descripton: value,
+      descripton: JSON.stringify(value),
       subDescription:data?.subDescription,
       price: parseInt(data?.price),
       servicePicture: JSON.stringify(imageUrls),

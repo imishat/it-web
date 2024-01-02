@@ -40,7 +40,7 @@ function UpdateBlog() {
   const [value, setValue] = useState('');
 
   useEffect(()=>{
-    setValue(blog?.descripton ? (blog?.descripton):'<p>Hello World!</p>')
+    setValue(blog?.descripton ? (JSON.parse(blog?.descripton)):'<p>Reload Again!</p>')
   },[!blog?.id])
 
   // const onChange = (e) => {
@@ -88,7 +88,7 @@ function UpdateBlog() {
     setBtn("Updating...");
     const blogData = {
       title: data?.title || blog?.title,
-      descripton: value || blog?.descripton,
+      descripton: JSON.stringify(value) || blog?.descripton,
       Picture: imageUrl || blog?.Picture,
     };
     axios
@@ -123,7 +123,7 @@ function UpdateBlog() {
   const handleChange = (value) => {
     setValue(value);
   };
-
+ 
   return (
     <div>
       <div>
