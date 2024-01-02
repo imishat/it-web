@@ -28,7 +28,7 @@ function Blog() {
   }, []);
 
   return (
-    <div className="p-5 flex mx-auto sm:p-10 md:p-16 dark:bg-gray-800 dark:text-gray-100">
+    <div className="p-5 flex mx-auto sm:p-10 md:p-16 ">
       {loading ? (
         <div className="flex w-full flex-col max-w-4xl   rounded">
           <div
@@ -48,7 +48,7 @@ function Blog() {
           </div>
         </div>
       ) : (
-        <div className="flex w-full flex-col mx-auto max-w-4xl   rounded">
+        <div className="flex w-full flex-col mx-auto md:max-w-4xl   rounded">
           <Image
             height={200}
             width={400}
@@ -56,11 +56,11 @@ function Blog() {
             alt=""
             className="w-full h-60 border shadow-xl rounded-md object-cover sm:h-96 bg-base-300"
           />
-          <div className="p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-3xl sm:px-10 sm:mx-12 lg:rounded-md bg-base-200">
+          <div className="p-6 pb-12 m-4 mx-auto lg:-mt-16 space-y-6 w-full sm:max-w-xl lg:max-w-3xl sm:px-10 sm:mx-12 lg:rounded-md bg-base-200">
             <div className="space-y-2">
               <p
                 rel="noopener noreferrer"
-                className="inline-block text-2xl font-semibold sm:text-3xl"
+                className="inline-block text-2xl break-words w-full font-semibold sm:text-3xl"
               >
                 {blog?.title}
               </p>
@@ -68,7 +68,7 @@ function Blog() {
                 {moment(blog?.createdAt).fromNow()}
               </p>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col break-words w-full">
               {blog?.id ? <p>{parse(blog?.descripton)}</p> : ""}
             </div>
           </div>

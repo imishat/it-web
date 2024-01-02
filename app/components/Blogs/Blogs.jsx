@@ -3,7 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Skeleton from '../Loading/Skeleton';
+import Skeleton from "../Loading/Skeleton";
 
 function Blogs() {
   // loading
@@ -12,11 +12,11 @@ function Blogs() {
   const [blogs, setBlogs] = useState([]);
 
   // page
-  const [page,setPage] = useState(1)
-  // limit 
-  const [limit,setLimit] = useState(12)
-// count
-  const [count,setCount] = useState(0)
+  const [page, setPage] = useState(1);
+  // limit
+  const [limit, setLimit] = useState(12);
+  // count
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -24,19 +24,19 @@ function Blogs() {
       .get(`${process.env.NEXT_PUBLIC_API_URL}/all-blog`)
       .then((res) => {
         setBlogs(res.data?.data?.result);
-        setCount(res.data?.data?.total)
+        setCount(res.data?.data?.total);
         setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
       });
-  }, [limit,page]);
+  }, [limit, page]);
 
   // pages for count
-  const pages = Math.ceil(count/limit)
+  const pages = Math.ceil(count / limit);
   return (
-    <div className="mt-10 container mx-auto">
-      <div className="block md:flex w-full flex-col md:space-x-2 px-2 lg:p-0">
+    <div className="mt-10  container mx-auto">
+      <div className="block md:flex lg:w-2/3 flex-col md:space-x-2 px-2 lg:p-0">
         {/* <div className="flex">
           <Link
             className="mb-4 md:mb-0 w-full md:w-2/3 relative rounded inline-block h-[24em]"
@@ -121,43 +121,49 @@ function Blogs() {
             </div>
           </a>
         </div> */}
-        <div className="block lg:flex lg:space-x-2 px-2 lg:p-0 mt-10 mb-10">
+        <div className="block lg:flex bg-base-200 rounded-md lg:space-x-2 px-2 lg:p-0 mt-10 mb-10">
           {/* <!-- post cards --> */}
-          <div className="w-full lg:w-2/3">
-            {loading ?
-            <div>
-             {
-              [...Array(12).keys()]?.map((item,i)=>{
-                return  <Skeleton key={i} />
-              })
-             }
-            </div>
-            :
-            blogs?.length ? (
+          <div className="w-full">
+            {loading ? (
+              <div>
+                {[...Array(12).keys()]?.map((item, i) => {
+                  return <Skeleton key={i} />;
+                })}
+              </div>
+            ) : blogs?.length ? (
               blogs?.map((blog) => {
-                const image = blog?.Picture
+                const image = blog?.Picture;
                 return (
                   <div
                     key={blog?.id}
-                    className="block rounded w-full lg:flex mb-10"
+                    className="inline-block rounded w-full lg:flex"
                   >
                     <div
-                      className={`h-48 lg:w-48 flex-none bg-cover text-center rounded-xl `}
+                      className={`h-48 lg:w-48 overflow-hidden flex-none bg-cover text-center rounded-xl `}
                       title="deit is very important"
                     >
-                      <Image src={image} className="w-full h-full object-cover rounded-xl" height={500} width={500} />
+                      <Image
+                        src={image}
+                        className="w-full h-full object-cover rounded-xl"
+                        height={500}
+                        width={500}
+                      />
                     </div>
-                    <div className="bg-white rounded px-4 flex flex-col justify-between leading-normal">
-                      <div>
-                        <Link className="" href={`/blog/${blog?.id}`}>
-                          <div className="mt-3 md:mt-0 text-blue-500 duration-300 link-hover hover:text-blue-600 font-bold text-xl mb-2">
-                            {blog?.title}
-                          </div>
+                    <div className="rounded px-4 w-full flex flex-col justify-between leading-normal ">
+                        <Link
+                          className="mt-3 w-full !break-words md:mt-0 text-blue-500 duration-300 link-hover hover:text-blue-600 pt-4 font-bold text-xl mb-0"
+                          href={`/blog/${blog?.id}`}
+                        >
+                          {blog?.title}
                         </Link>
-                        <p className="text-gray-700 text-base">
-                          {blog?.descripton?.replace(/(<([^>]+)>)/gi, "")?.split(' ')?.slice(0,40)?.join(' ')}...
+                        <p className="!break-words w-full text-base">
+                          {blog?.descripton
+                            ?.replace(/(<([^>]+)>)/gi, "")
+                            ?.split(" ")
+                            ?.slice(0, 40)
+                            ?.join(" ")}
+                          ...
                         </p>
-                      </div>
                       <div className="flex mt-3 items-center">
                         <Image
                           width={400}
@@ -183,11 +189,11 @@ function Blogs() {
           </div>
 
           {/* <!-- right sidebar --> */}
-          {/* <Categories /> */}
+          
         </div>
       </div>
-         {/* Pagination */}
-         <div className="flex justify-center my-6">
+      {/* Pagination */}
+      <div className="flex justify-center my-6">
         <div className="join">
           {pages > 1
             ? [...Array(pages).keys()]?.map((item, i) => {
