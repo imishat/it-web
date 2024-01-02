@@ -157,7 +157,7 @@ function Blogs() {
                           {blog?.title}
                         </Link>
                         <p className="!break-words w-full text-base">
-                          {blog?.descripton
+                          {blog?.descripton && JSON.parse(blog?.descripton)
                             ?.replace(/(<([^>]+)>)/gi, "")
                             ?.split(" ")
                             ?.slice(0, 40)

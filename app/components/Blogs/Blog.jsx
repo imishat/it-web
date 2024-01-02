@@ -26,7 +26,8 @@ function Blog() {
         setLoading(false);
       });
   }, []);
-
+const parseData = blog?.descripton ? JSON.parse(blog?.descripton):""
+console.log(parseData,'parseData')
   return (
     <div className="p-5 flex mx-auto sm:p-10 md:p-16 ">
       {loading ? (
@@ -68,8 +69,8 @@ function Blog() {
                 {moment(blog?.createdAt).fromNow()}
               </p>
             </div>
-            <div className="flex flex-col break-words w-full">
-              {blog?.id ? <p>{parse(blog?.descripton)}</p> : ""}
+            <div className="flex blog-body flex-col break-words w-full">
+              {parseData ? <p>{parse(parseData)}</p> : ""}
             </div>
           </div>
         </div>

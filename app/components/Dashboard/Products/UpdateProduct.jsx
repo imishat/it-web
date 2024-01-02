@@ -76,7 +76,7 @@ function UpdateProduct() {
     setBtn("Updating...");
     const serviceData = {
       title: data?.title || service?.title,
-      descripton: value || service?.descripton,
+      descripton: JSON.stringify(value) || service?.descripton,
       subDescription:data?.subDescription,
       servicePicture: imageUrls?.length
         ? JSON.stringify(imageUrls)
@@ -103,7 +103,7 @@ function UpdateProduct() {
 
   // set data in value
   useEffect(()=>{
-    setValue(service?.descripton ? (service?.descripton):'<p>Reload Again!</p>')
+    setValue(service?.descripton ? (JSON.parse(service?.descripton)):'<p>Reload Again!</p>')
   },[!service?.id])
   // image data
   let imageData = imageUrls?.length ? imageUrls : images;
