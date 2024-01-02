@@ -1,13 +1,15 @@
 "use client";
 import { IoGrid, IoHome } from "react-icons/io5";
 
-import Link from "next/link";
-import { IoMdLogIn, IoMdMenu } from "react-icons/io";
-
+import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsCart2 } from "react-icons/bs";
+import { FaAngleDown } from "react-icons/fa6";
+import { IoMdLogIn, IoMdMenu } from "react-icons/io";
+import { MdDashboard } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "../../../context/ContextProvider";
 import { showModal } from "../../../redux/features/modal/modalSlice";
@@ -15,10 +17,8 @@ import CartSidebar from "../Modals/CartSidebar";
 import LoginModal from "../Modals/LoginModal";
 
 function Navbar() {
+  const { user } = useContext(AuthContext);
 
-  const {user} = useContext(AuthContext)
-
-  
   const cart = useSelector((state) => state.cart);
   // router
   const router = usePathname();
@@ -31,6 +31,24 @@ function Navbar() {
 
   // show hide cart
   const [showSidebar, setShowSidebar] = useState(false);
+
+  // loading
+  const [loading, setLoading] = useState(true);
+  // get all categories
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/all-category`)
+      .then((res) => {
+        setCategories(res.data?.data?.result);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+  }, []);
   return (
     <div className=" ">
       <div className="navbar px-3 container mx-auto h-[50px] min-h-[50px] py-0 bg-base-100 border-b">
@@ -58,7 +76,6 @@ function Navbar() {
               {/* Home and close */}
               <div className="flex items-center gap-2 w-full">
                 <div>
-           
                   <button onClick={() => setShowNav(!showNav)}>
                     <img
                       src="https://cdn.kwork.com/images/header/icon-close.svg"
@@ -67,14 +84,14 @@ function Navbar() {
                   </button>
                 </div>
                 <Link href="/">
-              <Image
-                width={150}
-                height={100}
-                src="/images/logo.png"
-                className="h-10 w-full"
-                alt=""
-              />
-            </Link>
+                  <Image
+                    width={150}
+                    height={100}
+                    src="/images/logo.png"
+                    className="h-10 w-full"
+                    alt=""
+                  />
+                </Link>
               </div>
               {/* Navbar mobile */}
               <div className={`w-full`}>
@@ -108,69 +125,59 @@ function Navbar() {
                     <p className="w-full"></p>
                   </div>
                   <ul className="space-y-2 w-full absolute bg-base-100 top-14 left-4 h-full">
-                    <Link
-                      className="hover:bg-blue-50 px-2 py-2.5 rounded-none btn-ghost flex justify-start active:bg-white hover:btn-ghost"
-                      href={"#"}
-                    >
-                      Home
-                    </Link>
-                    <Link
-                      className="hover:bg-blue-50 px-2 py-2.5 rounded-none btn-ghost flex justify-start active:bg-white hover:btn-ghost"
-                      href={"#"}
-                    >
-                      Home
-                    </Link>
-                    <Link
-                      className="hover:bg-blue-50 px-2 py-2.5 rounded-none btn-ghost flex justify-start active:bg-white hover:btn-ghost"
-                      href={"#"}
-                    >
-                      Home
-                    </Link>
-                    <Link
-                      className="hover:bg-blue-50 px-2 py-2.5 rounded-none btn-ghost flex justify-start active:bg-white hover:btn-ghost"
-                      href={"#"}
-                    >
-                      Home
-                    </Link>
-                    <Link
-                      className="hover:bg-blue-50 px-2 py-2.5 rounded-none btn-ghost flex justify-start active:bg-white hover:btn-ghost"
-                      href={"#"}
-                    >
-                      Home
-                    </Link>
-                    <Link
-                      className="hover:bg-blue-50 px-2 py-2.5 rounded-none btn-ghost flex justify-start active:bg-white hover:btn-ghost"
-                      href={"#"}
-                    >
-                      Home
-                    </Link>
+                    {loading ? (
+                      <div></div>
+                    ) : categories?.length ? (
+                      categories?.map((category, i) => {
+                        return (
+                          <Link
+                            key={i}
+                            className="hover:bg-blue-50 px-2 py-2.5 rounded-none btn-ghost flex justify-start active:bg-white hover:btn-ghost"
+                            href={`/shop/${category?.id}`}
+                          >
+                            {category?.name}
+                          </Link>
+                        );
+                      })
+                    ) : (
+                      <div>No Categories</div>
+                    )}
                   </ul>
                 </div>
                 {/* Sign up btn */}
-                <a className="btn w-32 !min-h-[40px] h-[40px] rounded bg-green-600 hover:bg-[#E77C01] text-white px-6">
+                {/* <a href="#" className="btn w-32 !min-h-[40px] h-[40px] rounded bg-green-600 hover:bg-[#E77C01] text-white px-6">
                   Sign Up
-                </a>
+                </a> */}
                 {/* Nav for mobile */}
                 <div className="flex my-6 justify-start w-full">
                   <div className="w-full flex flex-col space-y-4">
                     <div className="flex w-full items-center gap-3">
                       <span className="w-6">
-                        <IoMdLogIn size={24} />
+                        {user?.email ? (
+                          <MdDashboard size={24} />
+                        ) : (
+                          <IoMdLogIn size={24} />
+                        )}
                       </span>
-                      <Link
-                        onClick={() => setShowNav(false)}
-                        className="w-full"
-                        href={"/login"}
-                      >
-                        Sign In
-                      </Link>
+                      {user?.email ? (
+                        <Link className="w-full " href={`/dashboard`}>
+                          Dashboard
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={() => dispatch(showModal(!modal))}
+                          className="w-full flex justify-start"
+                        >
+                          Sign In
+                        </button>
+                      )}
                     </div>
                     {/* ==== */}
                     <div className="flex items-center gap-3">
                       <span className="w-6">
                         <IoHome size={24} />
                       </span>
-                      <Link className="w-full" href={"#"}>
+                      <Link className="w-full" href={"/"}>
                         To Homepage
                       </Link>
                     </div>
@@ -182,8 +189,14 @@ function Navbar() {
                       <span className="w-6">
                         <IoGrid size={24} />
                       </span>
-                      <button className="w-full inline text-left" href={"#"}>
-                        Browse Categories
+                      <button
+                        className="w-full flex items-center justify-between text-left"
+                        href={"#"}
+                      >
+                        <span>Browse Categories</span>
+                        <span>
+                          <FaAngleDown />
+                        </span>
                       </button>
                     </div>
                   </div>
@@ -215,7 +228,7 @@ function Navbar() {
         </div>
         <div className="navbar-center">
           <div className="brand-image h-9  lg:hidden">
-          <Link href="/">
+            <Link href="/">
               <Image
                 width={150}
                 height={100}
@@ -230,18 +243,21 @@ function Navbar() {
           <Link href={"/blogs"} className="px-4 text-sm hidden lg:block py-2">
             Blogs
           </Link>
-          {
-            user?.email ? <Link className="btn hidden !min-h-[40px] h-[40px] lg:flex rounded bg-[#E77C01] hover:bg-[#E77C01] text-white px-6" href={`/dashboard`}>
-            Dashboard</Link>
-            :
+          {user?.email ? (
+            <Link
+              className="btn hidden !min-h-[40px] h-[40px] lg:flex rounded bg-[#E77C01] hover:bg-[#E77C01] text-white px-6"
+              href={`/dashboard`}
+            >
+              Dashboard
+            </Link>
+          ) : (
             <button
-            onClick={() => dispatch(showModal(!modal))}
-            className="btn hidden !min-h-[40px] h-[40px] lg:flex rounded bg-[#E77C01] hover:bg-[#E77C01] text-white px-6"
-          >
-            Sign In
-          </button>
-          }
-        
+              onClick={() => dispatch(showModal(!modal))}
+              className="btn hidden !min-h-[40px] h-[40px] lg:flex rounded bg-[#E77C01] hover:bg-[#E77C01] text-white px-6"
+            >
+              Sign In
+            </button>
+          )}
 
           <button
             onClick={() => setShowSidebar(!showSidebar)}
@@ -254,9 +270,7 @@ function Navbar() {
           </button>
         </div>
       </div>
-      {
-      modal?<LoginModal /> :''
-    }
+      {modal ? <LoginModal /> : ""}
       <CartSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
     </div>
   );

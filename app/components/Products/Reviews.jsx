@@ -4,11 +4,12 @@ import parse from "html-react-parser";
 import moment from 'moment';
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { BsStarFill } from "react-icons/bs";
 
-function Reviews({ product }) {
+function Reviews({ product,update,setUpdate }) {
   // react hook form
-  const {register,handleSubmit} = useForm()
+  const {register,handleSubmit,reset} = useForm()
   // state
   const [toggle, setToggle] = useState(true);
 
@@ -25,6 +26,9 @@ function Reviews({ product }) {
     .then(res=>{
       if(res.data?.success){
         setBtn('Created')
+        toast.success('Review Created')
+        setUpdate(!update)
+        reset()
       }else{
         setBtn('Try Again')
       }
@@ -65,7 +69,7 @@ function Reviews({ product }) {
             <div className="flex flex-col gap-4  p-4">
               {/* <!-- Profile and Rating --> */}
               <p className="leading-relaxed blog-body">
-                {product?.descripton ? parse(JSON.parse(product?.descripton)) : ""}
+                {product?.descripton ? parse(product?.descripton) : ""}
               </p>
             </div>
           </div>

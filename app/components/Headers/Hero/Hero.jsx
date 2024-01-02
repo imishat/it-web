@@ -70,33 +70,33 @@ function Hero() {
                   <li>
                     <Link
                       className="bg-blue-50 border text-[#E77C01] border-blue-200 px-2 py-1"
-                      href={`/shop?search=Web Design`}
+                      href={`/shop?search=Web development`}
                     >
-                      Web Design
+                      Web development
                     </Link>
                   </li>
                   <li>
                     <Link
                       className="bg-blue-50 border text-[#E77C01] border-blue-200 px-2 py-1"
-                      href={`/shop?search=Logo Design`}
+                      href={`/shop?search=Graphics & Design`}
                     >
-                      Logo Design
+                      Graphics & Design
                     </Link>
                   </li>
                   <li>
                     <Link
                       className="bg-blue-50 border text-[#E77C01] border-blue-200 px-2 py-1"
-                      href={`/shop?search=Social Media Design`}
+                      href={`/shop?search=SEO`}
                     >
-                      Social Media Design
+                      SEO
                     </Link>
                   </li>
                   <li>
                     <Link
                       className="bg-blue-50 border text-[#E77C01] border-blue-200 px-2 py-1"
-                      href={`/shop?search=Wordpress`}
+                      href={`/shop?search=SMM`}
                     >
-                      Wordpress
+                      SMM
                     </Link>
                   </li>
                 </ul>

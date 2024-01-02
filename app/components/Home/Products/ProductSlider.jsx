@@ -31,7 +31,7 @@ function ProductSlider({ images, showNavigation,product }) {
                 width={400}
                 height={400}
                 src={image?.url}
-                className="!h-56 select-none  w-full object-top "
+                className="!h-56 select-none object-fill w-full object-top "
                 alt=""
                 />
                 </Link>

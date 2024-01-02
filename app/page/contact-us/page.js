@@ -1,4 +1,31 @@
+'use client';
+import emailjs from 'emailjs-com';
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
 function Page() {
+  const { register, handleSubmit, reset } = useForm();
+
+  const USER_ID = "MZaxcowCrxbg5Wpf_";
+  const SERVICE_ID = "service_yw5gusm";
+  const TEMPLATE_ID = "template_zdn8h64";
+
+  const handleSendMail = async (data) => {
+    const messageData = {
+      from_name: data?.name,
+      to_name: "It Platform BD",
+      message: data?.message,
+    };
+    try {
+      // Send email using emailjs
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, messageData, USER_ID);
+      toast.success("Email sent successfully!");
+      reset();
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
+  };
+
   return (
     <div className="space-y-4 h-screen">
       <h2 className="text-5xl font-bold flex justify-center mt-6">
@@ -48,9 +75,10 @@ function Page() {
 
           <p>[Nahid] IT Platform BD</p>
         </div>
-        <form className="w-full">
+        <form onSubmit={handleSubmit(handleSendMail)} className="w-full">
           <div class="mb-1">
             <input
+              {...register("name", { required: true })}
               type="text"
               placeholder="Your Name"
               class="w-full border  px-3 py-4"
@@ -58,6 +86,7 @@ function Page() {
           </div>
           <div class="mb-1">
             <input
+              {...register("email", { required: true })}
               type="email"
               placeholder="Your Email"
               class="
@@ -72,6 +101,7 @@ function Page() {
           </div>
           <div class="mb-1">
             <textarea
+              {...register("message", { required: true })}
               rows="4"
               placeholder="Your Message"
               class="

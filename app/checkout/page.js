@@ -42,7 +42,7 @@ function Page() {
  
 
   // phone number
-  const phone = "+880 1739-452511";
+  const phone = "+1 (786) 947-3724";
 
   return (
     <div>
@@ -139,7 +139,7 @@ function Page() {
                   class="flex flex-col rounded-lg border sm:flex-row"
                 >
                   <img
-                    class="m-2 h-24 w-28 rounded-md border object-cover object-center"
+                    class="m-2 h-24 w-28 rounded-md border object-fill object-center"
                     src={
                       item?.servicePicture
                         ? JSON.parse(item?.servicePicture)[0]?.url

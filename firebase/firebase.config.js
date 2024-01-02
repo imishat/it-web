@@ -19,12 +19,12 @@ import {
     signOut
 } from 'firebase/auth';
 const firebaseConfig = {
-    apiKey: "AIzaSyDj-1y6kCTYY_JoFk3hkpsyC0Ky2Fkd3B0",
-    authDomain: "it-platform-b8763.firebaseapp.com",
-    projectId: "it-platform-b8763",
-    storageBucket: "it-platform-b8763.appspot.com",
-    messagingSenderId: "299260365710",
-    appId: "1:299260365710:web:fc11160e5e9ef8e4c472df"
+    apiKey: "AIzaSyBr-WIsjApW7w45W7hMQ9jlMlAtRB5-A-g",
+    authDomain: "it-platform-bd.firebaseapp.com",
+    projectId: "it-platform-bd",
+    storageBucket: "it-platform-bd.appspot.com",
+    messagingSenderId: "1044586930262",
+    appId: "1:1044586930262:web:bc5c309434703dbe6d5bf7"
   };
 initializeApp(firebaseConfig);
 
