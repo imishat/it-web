@@ -17,12 +17,14 @@ function Shop() {
   // shopId
   const { shopId } = params;
   // get category by shop id
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState({});
+  const [services, setServices] = useState([]);
   useEffect(() => {
     axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}/all-category/${shopId}`)
       .then((res) => {
-        setCategory(res.data?.data?.result);
+        setCategory(res.data?.data);
+        setServices(res.data?.data?.Service);
       });
   }, [shopId]);
   const [products, setProducts] = useState([]);
@@ -46,14 +48,17 @@ function Shop() {
   // range slider
 const [price, setPrice] = useState('1000');
 
-const filteredData = products?.filter(item=>item?.price <= parseInt(price))
+// product data
+const productData = services?.length ? services:products
+
+const filteredData = productData?.filter(item=>item?.price <= parseInt(price))
 
 
   useEffect(() => {
     setLoading(true);
     axios
       .get(
-        `${process.env.NEXT_PUBLIC_API_URL}/get-service?searchTerm=${search||shopId}&page=${page}&limit=${limit}`
+        `${process.env.NEXT_PUBLIC_API_URL}/get-service?searchTerm=${search}&page=${page}&limit=${limit}`
       )
       .then((res) => {
         setProducts(res.data?.data?.result);

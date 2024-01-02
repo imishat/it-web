@@ -62,8 +62,8 @@ function UpdateBlog() {
     const data = new FormData();
     data.append("file", img);
     data.append("upload_preset", "services_image");
-    data.append("cloud_name", "dtmfvaux5");
-    fetch("https://api.cloudinary.com/v1_1/dtmfvaux5/image/upload", {
+    data.append("cloud_name", "dgf2zlqx9");
+    fetch("https://api.cloudinary.com/v1_1/dgf2zlqx9/image/upload", {
       method: "POST",
       body: data,
     })

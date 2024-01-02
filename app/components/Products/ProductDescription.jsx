@@ -22,6 +22,8 @@ function ProductDescription() {
   const [product, setProduct] = useState({});
   // is added in cart
   const isAdded = cart.find((item) => item.id === product?.id);
+  // update
+  const [update,setUpdate] = useState(false)
 
   // loading
   const [loading, setLoading] = useState(true);
@@ -39,7 +41,7 @@ function ProductDescription() {
           setLoading(false);
         });
     }
-  }, [productId]);
+  }, [productId,update]);
 
   
 
@@ -125,7 +127,7 @@ function ProductDescription() {
 
   return (
     <MainLayout title={product?.title} description={product?.subDescription}>
-    <section className="text-gray-700 container mx-auto body-font overflow-hidden  bg-white">
+    <div className="text-gray-700 container mx-auto body-font overflow-hidden  bg-white">
       <div className="container  md:pt-24 max-h-fit  mx-auto">
         {loading ? (
           <div className="flex">
@@ -246,11 +248,11 @@ function ProductDescription() {
         )}
       </div>
       <div className="space-y-5">
-        <Reviews product={product} />
+        <Reviews setUpdate={setUpdate} update={update} product={product} />
         {/* related */}
-        <Related service={product} />
+        <Related  service={product} />
       </div>
-    </section>
+    </div>
     </MainLayout>
   );
 }

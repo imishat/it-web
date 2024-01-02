@@ -12,8 +12,8 @@ function CreateCategory() {
     const data = new FormData()
     data.append("file", image)
     data.append("upload_preset", "kwork-image")
-    data.append("cloud_name","dl1cxduy0")
-    fetch("  https://api.cloudinary.com/v1_1/dl1cxduy0/image/upload",{
+    data.append("cloud_name","dgf2zlqx9")
+    fetch("  https://api.cloudinary.com/v1_1/dgf2zlqx9/image/upload",{
     method:"post",
     body: data
     })

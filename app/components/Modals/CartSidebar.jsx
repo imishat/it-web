@@ -25,7 +25,7 @@ function CartSidebar({setShowSidebar,showSidebar}) {
       cart?.map((cart,i)=>{
          return <div key={i} className="flex  my-2 border-b gap-2 px-1 border-gray-400">
            <div className="w-24 overflow-hidden h-16 ">
-           <img className="object-cover w-full h-full object-top border border-gray-400 rounded" src={cart?.servicePicture? JSON.parse(cart?.servicePicture)[0]?.url:''} alt="" />
+           <img className="object-fill w-full h-full object-top border border-gray-400 rounded" src={cart?.servicePicture? JSON.parse(cart?.servicePicture)[0]?.url:''} alt="" />
            </div>
            <div className="flex w-full flex-col space-y-1">
              <h2 className="font-bold text-sm leading-4">{cart?.title}</h2>
