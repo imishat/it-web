@@ -27,8 +27,8 @@ function Page() {
   };
 
   return (
-    <div className="space-y-4 h-screen">
-      <h2 className="text-5xl font-bold flex justify-center mt-6">
+    <div className="space-y-4 h-full px-2 sm:px-1 md:px-4">
+      <h2 className="xl:text-5xl text-xl md:text-2xl font-bold flex justify-center mt-6">
         Contact us
       </h2>
       <p>
@@ -64,7 +64,7 @@ function Page() {
       </p>
 
       {/* Contact us form */}
-      <div className="flex items-center w-full">
+      <div className="md:flex items-center w-full">
         <div className="w-full space-y-4">
           <p>Best regards,</p>
           <p>Mobile: +1 (786) 947-3724</p>
@@ -75,7 +75,7 @@ function Page() {
 
           <p>[Nahid] IT Platform BD</p>
         </div>
-        <form onSubmit={handleSubmit(handleSendMail)} className="w-full">
+        <form onSubmit={handleSubmit(handleSendMail)} className="w-full mt-12 md:mt-0">
           <div class="mb-1">
             <input
               {...register("name", { required: true })}

@@ -1,7 +1,7 @@
 function Page() {
     return (
-        <div className="text-sm space-y-4">
-             <h2 className="text-5xl font-bold flex justify-center mt-6">About us</h2>
+        <div className="text-sm space-y-4 px-2 sm:px-1 md:px-4">
+             <h2 className="xl:text-5xl text-xl md:text-2xl font-bold flex justify-center mt-6">About us</h2>
          <h2 className="flex my-6 font-bold text-xl"> Introducing IT Platform BD: Your Trusted Digital Marketing Agency</h2>
 
 <p>Welcome to IT Platform BD, a leading digital marketing agency dedicated to helping businesses thrive in the digital age. With our expertise and innovative solutions, we empower companies to maximize their online presence, reach their target audience, and achieve their business goals.</p>

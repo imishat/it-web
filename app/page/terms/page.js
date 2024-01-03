@@ -1,7 +1,7 @@
 function Page() {
     return (
-        <div className="space-y-6 ">
-            <h2 className="text-5xl font-bold flex justify-center mt-6">Terms and Conditions</h2>
+        <div className="space-y-6 px-2 sm:px-1 md:px-4">
+            <h2 className="xl:text-5xl text-xl md:text-2xl font-bold flex justify-center mt-6">Terms and Conditions</h2>
           <p className=""> <span className="text-xl font-bold">A</span>t IT Platform BD, we prioritize client satisfaction and strive to build long-term partnerships based on trust, transparency, and measurable results. We believe in constant communication and collaboration, working closely with our clients to understand their goals, track progress, and make data-driven decisions.</p>
 
 <p>If you're looking for a digital marketing agency that is dedicated to your success, look no further than IT Platform BD. Let us help you unlock your business's full potential in the digital landscape.

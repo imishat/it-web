@@ -69,7 +69,7 @@ function Reviews({ product,update,setUpdate }) {
             <div className="flex flex-col gap-4  p-4">
               {/* <!-- Profile and Rating --> */}
               <p className="leading-relaxed blog-body">
-                {product?.descripton ? parse(product?.descripton) : ""}
+                {product?.descripton ? parse(JSON.parse(product?.descripton)) : ""}
               </p>
             </div>
           </div>

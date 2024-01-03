@@ -1,5 +1,5 @@
 "use client";
-import { IoGrid, IoHome } from "react-icons/io5";
+import { IoGrid, IoHome, IoMenu } from "react-icons/io5";
 
 import axios from "axios";
 import Image from "next/image";
@@ -171,8 +171,9 @@ function Navbar() {
                           Sign In
                         </button>
                       )}
+
                     </div>
-                    {/* ==== */}
+                    {/* Home */}
                     <div className="flex items-center gap-3">
                       <span className="w-6">
                         <IoHome size={24} />
@@ -181,7 +182,7 @@ function Navbar() {
                         To Homepage
                       </Link>
                     </div>
-                    {/* ==== */}
+                    {/* Categories */}
                     <div
                       onClick={() => setShowSubNav(!showSubNav)}
                       className="flex items-center gap-3"
@@ -198,6 +199,16 @@ function Navbar() {
                           <FaAngleDown />
                         </span>
                       </button>
+                    </div>
+                    {/* Blog */}
+                      {/* Home */}
+                      <div className="flex items-center gap-3">
+                      <span className="w-6">
+                        <IoMenu size={24} />
+                      </span>
+                      <Link className="w-full" href={"/blogs"}>
+                        Blogs
+                      </Link>
                     </div>
                   </div>
                 </div>

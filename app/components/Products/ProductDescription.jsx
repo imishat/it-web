@@ -130,7 +130,7 @@ function ProductDescription() {
     <div className="text-gray-700 container mx-auto body-font overflow-hidden  bg-white">
       <div className="container  md:pt-24 max-h-fit  mx-auto">
         {loading ? (
-          <div className="flex">
+          <div className="md:flex">
             <div className="lg:w-2/3 w-full h-96 lg:pl-10  lg:mt-0 px-2">
               <Skeleton />
               <Skeleton />
